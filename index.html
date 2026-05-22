@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Porsche Analytics Dashboards</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    p {
+      color: #cbd5e1;
+      margin-bottom: 50px;
+      text-align: center;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 30px;
+      transition: 0.3s;
+      border: 1px solid #334155;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #3b82f6;
+      box-shadow: 0px 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .card p {
+      margin-bottom: 25px;
+      color: #94a3b8;
+      text-align: left;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: #64748b;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>📊 Porsche Analytics Dashboards</h1>
+
+  <p>
+    Projeto desenvolvido durante o programa de aceleração com foco na aplicação de
+    Inteligência Artificial para análise, tratamento de dados e construção de dashboards analíticos.
+  </p>
+
+  <div class="dashboard-container">
+
+    <div class="card">
+      <h2>Gemini Dashboard</h2>
+
+      <p>
+        Dashboard desenvolvido utilizando o Gemini AI para análise visual e geração de insights.
+      </p>
+
+      <a class="btn" href="./porsche_analytics_dashboard_gemini.html">
+        Abrir Dashboard
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>GPT Plus Dashboard</h2>
+
+      <p>
+        Dashboard criado com apoio do GPT Plus para estruturação analítica e visualização de dados.
+      </p>
+
+      <a class="btn" href="./porsche_sales_dashboard_html_gptplus.html">
+        Abrir Dashboard
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>Claude Sonnet Dashboard</h2>
+
+      <p>
+        Dashboard desenvolvido utilizando Claude Sonnet para comparação de abordagem analítica.
+      </p>
+
+      <a class="btn" href="./porsche_sales_dashboard_claude_sannet.html">
+        Abrir Dashboard
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    Desenvolvido para fins educacionais e comparativos de ferramentas de IA.
+  </footer>
+
+</body>
+
+</html>
