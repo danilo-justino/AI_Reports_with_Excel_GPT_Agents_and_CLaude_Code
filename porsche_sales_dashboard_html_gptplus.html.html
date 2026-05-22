@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Porsche Sales Intelligence</title>
+<style>
+:root{--bg:#0a0a0a;--panel:#151515;--panel2:#1f1f1f;--text:#f7f5f0;--muted:#aaa49a;--line:#343434;--red:#d5001c;--cream:#f6f5f1}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Arial,sans-serif}.top-section{min-height:350px;padding:30px 46px;background:radial-gradient(circle at 80% 8%,#421017 0,transparent 34%),linear-gradient(135deg,#050505,#171717 55%,#070707);border-bottom:1px solid var(--line)}nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:62px}.brand{letter-spacing:.55rem;font-weight:800;font-size:24px}.navlinks{display:flex;gap:26px;color:var(--muted);font-size:13px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:end}h1{font-size:56px;line-height:1;margin:0 0 16px;font-weight:650;letter-spacing:-2px}.subtitle{max-width:760px;color:#d8d3ca;font-size:17px;line-height:1.58}.hero-card,.card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:28px;box-shadow:0 24px 80px rgba(0,0,0,.32)}.hero-card{padding:24px;backdrop-filter:blur(10px)}.hero-kpi{display:grid;grid-template-columns:1fr 1fr;gap:18px}.mini{border-left:3px solid var(--red);padding-left:14px}.mini b{display:block;font-size:27px}.mini span,.kpi-title,label{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.12rem}main{padding:28px 46px 54px}.filters{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:-64px;position:relative;z-index:3}label{display:block;margin-bottom:8px}select{width:100%;background:var(--cream);color:#111;border:0;border-radius:16px;padding:15px 14px;font-weight:700}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:22px}.card{padding:22px}.span3{grid-column:span 3}.span4{grid-column:span 4}.span5{grid-column:span 5}.span7{grid-column:span 7}.span12{grid-column:span 12}.kpi{font-size:34px;margin-top:8px;font-weight:700}.delta{color:#d7d2ca;font-size:13px;margin-top:6px}h2{margin:0 0 18px;font-size:22px}.barrow{margin:13px 0}.barline{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px;gap:10px}.bar{height:10px;background:#2b2b2b;border-radius:999px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--red),#ff7373);border-radius:999px}.table{width:100%;border-collapse:collapse;font-size:13px}.table th{text-align:left;color:var(--muted);font-weight:650;padding:10px;border-bottom:1px solid var(--line)}.table td{padding:10px;border-bottom:1px solid #242424}.story{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.story article{background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:18px}.tag{display:inline-block;color:#fff;background:var(--red);border-radius:999px;padding:5px 10px;font-size:11px;margin-bottom:12px}.note{color:var(--muted);line-height:1.62;font-size:14px}.chip{display:inline-flex;margin:5px 6px 0 0;padding:8px 11px;background:#242424;border:1px solid #383838;border-radius:999px;font-size:12px}@media(max-width:980px){.hero,.filters,.story{grid-template-columns:1fr}.span3,.span4,.span5,.span7,.span12{grid-column:span 12}h1{font-size:38px}.top-section,main{padding-left:22px;padding-right:22px}.filters{margin-top:-30px}}
+</style>
+</head>
+<body>
+<section class="top-section"><nav><div class="brand">PORSCHE</div><div class="navlinks"><span>Models</span><span>Shopping Tools</span><span>Experience</span><span>Business Intelligence</span></div></nav><div class="hero"><div><h1>Sales Performance Intelligence</h1><p class="subtitle">Um cockpit executivo inspirado na estética Porsche: precisão, sofisticação e foco em decisões. Explore vendas por modelo, ano, cidade e método de pagamento para identificar tração regional, mix de produtos e oportunidades comerciais.</p></div><div class="hero-card"><div class="hero-kpi"><div class="mini"><b id="heroUnits">0</b><span>vendas filtradas</span></div><div class="mini"><b id="heroRevenue">$0</b><span>receita</span></div><div class="mini"><b id="heroTopModel">—</b><span>modelo líder</span></div><div class="mini"><b id="heroTopCity">—</b><span>cidade líder</span></div></div></div></div></section>
+<main><section class="filters"><div><label>Modelo da Porsche</label><select id="fModel"><option value="All">Todos</option></select></div><div><label>Model Year</label><select id="fYear"><option value="All">Todos</option></select></div><div><label>City</label><select id="fCity"><option value="All">Todas</option></select></div><div><label>Pay method</label><select id="fPay"><option value="All">Todos</option></select></div><div><label>Status</label><select id="fStatus"><option value="All">Todos</option></select></div></section>
+<section class="grid"><div class="card span3"><div class="kpi-title">Receita total</div><div class="kpi" id="kRevenue">$0</div><div class="delta">preço de venda sanitizado</div></div><div class="card span3"><div class="kpi-title">Unidades vendidas</div><div class="kpi" id="kUnits">0</div><div class="delta" id="kUnitsSub"></div></div><div class="card span3"><div class="kpi-title">Ticket médio</div><div class="kpi" id="kAvg">$0</div><div class="delta">receita / unidades</div></div><div class="card span3"><div class="kpi-title">Ano mais vendido</div><div class="kpi" id="kYear">—</div><div class="delta" id="kYearSub"></div></div><div class="card span7"><h2>Principais modelos por cidade</h2><div id="cityModelBars"></div></div><div class="card span5"><h2>Principais modelos por Estado</h2><div id="stateModelBars"></div></div><div class="card span4"><h2>Modelo que mais saiu no período</h2><div id="periodWinner"></div></div><div class="card span4"><h2>Carros populares por cidade</h2><div id="popularCity"></div></div><div class="card span4"><h2>Mix por método de pagamento</h2><div id="payBars"></div></div><div class="card span12"><h2>Storytelling executivo</h2><div class="story" id="story"></div></div><div class="card span12"><h2>Detalhe analítico</h2><table class="table"><thead><tr><th>Modelo</th><th>Ano</th><th>Cidade</th><th>Estado</th><th>Pagamento</th><th>Preço</th><th>Status</th></tr></thead><tbody id="tbody"></tbody></table></div></section></main>
+<script>
+(() => {
+'use strict';
+
+const csv = `model|year|price|pay|city|state|status
+718 Cayman|2022|79500.0|Credit Card|Boston|MA|Delivered
+911 Turbo S|2024|235000.0|Wire Transfer|Seattle|WA|Delivered
+Cayenne Coupe|2023|112750.0|Financing|Austin|TX|In Transit
+Macan S|2021|68900.0|Cash|Denver|CO|Pending
+Taycan 4S|2024|121000.0|Bank Transfer|Los Angeles|CA|Delivered
+Panamera 4|2023|104500.0|Credit Card|Miami|FL|Cancelled
+911 Carrera S|2020|96300.0|Lease|New York|NY|Delivered
+Cayenne E-Hybrid|2022|89750.0|Wire Transfer|San Diego|CA|Pending Approval
+718 Boxster|2021|73500.0|Debit Card|Chicago|IL|Shipped
+Macan GTS|2024|95000.0|Financing|Phoenix|AZ|In Transit
+Taycan Turbo|2023|153200.5|ACH Payment|Dallas|TX|Delivered
+911 GT3|2024|241000.0|Wire Transfer|Las Vegas|NV|Pending
+Panamera Turbo S|2022|132000.0|Cash|San Jose|CA|Delivered
+Cayenne Turbo GT|2024|188000.0|Crypto Payment|Houston|TX|Awaiting Delivery
+911 Carrera Cabriolet|2023|127800.0|Credit Card|Atlanta|GA|Delivered
+Macan|2021|58900.0|Bank Transfer|Orlando|FL|Pending
+718 Spyder RS|2024|164000.0|Financing|Portland|OR|In Transit
+Taycan Cross Turismo|2023|118500.0|Wire Transfer|Charlotte|NC|Delivered
+Cayenne S|2022|91300.0|Credit Card|Nashville|TN|Pending
+911 Targa 4S|2024|158750.0|Lease|Minneapolis|MN|Delivered
+Panamera|2020|72000.0|Bank Transfer|Philadelphia|PA|Cancelled
+Macan Electric|2025|86500.0|Wire Transfer|San Antonio|TX|Delivered
+911 Dakar|2024|270000.0|Cash|Salt Lake City|UT|Awaiting Pickup
+Taycan GTS|2023|139000.0|Financing|Raleigh|NC|In Transit
+Cayenne|2021|76800.0|Credit|Detroit|MI|Delivered
+718 Cayman GT4 RS|2024|173600.0|Wire Transfer|Columbus|OH|Pending
+911 Carrera GTS|2022|119900.0|Cash|Indianapolis|IN|Delivered
+Panamera 4 E-Hybrid|2023|109250.0|Lease|Fort Worth|TX|In Transit
+Macan T|2022|82000.0|Wire Transfer|Jacksonville|FL|Delivered
+Taycan Turbo S|2025|214000.0|Crypto|San Diego|CA|Pending Review
+911 Carrera|2024|124500.0|Credit Card|Tampa|FL|Delivered
+Cayenne S|2023|98200.0|Bank Transfer|Sacramento|CA|Pending
+Macan|2022|67500.0|Financing|Cleveland|OH|Delivered
+Taycan|2025|116900.0|Wire Transfer|Milwaukee|WI|In Transit
+Panamera 4S|2024|112000.0|Cash|Kansas City|MO|Delivered
+718 Boxster|2021|74000.0|Debit Card|Omaha|NE|Cancelled
+911 Turbo|2024|198300.0|Wire Transfer|Albuquerque|NM|Awaiting Delivery
+Cayenne Coupe|2023|103750.0|Wire Transfer|Tucson|AZ|Pending Approval
+Macan GTS|2024|93600.0|Financing|Fresno|CA|Shipped
+Taycan 4S|2025|129000.0|ACH Payment|Virginia Beach|VA|In Transit
+Panamera Turbo|2022|136000.0|Credit Card|Colorado Springs|CO|Delivered
+911 GT3 RS|2024|286500.0|Wire Transfer|Arlington|TX|Pending
+Cayenne E-Hybrid|2023|92800.0|Lease|Bakersfield|CA|Delivered
+Macan T|2022|72400.0|Cash|Mesa|AZ|Awaiting Pickup
+Taycan Turbo|2025|158500.0|Crypto Payment|Atlanta|GA|Delivered
+718 Cayman|2021|69900.0|Bank Transfer|Long Beach|CA|Pending
+911 Targa 4|2024|141250.0|Financing|Oakland|CA|In Transit
+Panamera|2020|71500.0|Wire Transfer|Tulsa|OK|Delivered
+Cayenne Turbo|2023|146800.0|Credit Card|Wichita|KS|Pending
+Macan Electric|2025|89700.0|Lease|New Orleans|LA|Delivered
+911 Carrera S|2022|104600.0|Bank Transfer|Honolulu|HI|Cancelled
+Taycan GTS|2024|142000.0|Wire Transfer|Anaheim|CA|Delivered
+Cayenne|2021|78400.0|Cash|Henderson|NV|Awaiting Review
+718 Spyder RS|2025|169000.0|Financing|Lexington|KY|In Transit
+911 Dakar|2024|268900.0|Credit|Riverside|CA|Delivered
+Panamera 4|2023|101300.0|Wire Transfer|Corpus Christi|TX|Pending
+Macan S|2021|66750.0|Cash|St. Louis|MO|Delivered
+Taycan Cross Turismo|2024|127900.0|Lease|Pittsburgh|PA|In Transit
+Cayenne Turbo GT|2025|200000.0|Wire Transfer|Cincinnati|OH|Delivered
+911 Carrera Cabriolet|2023|132000.0|Crypto|Anchorage|AK|Pending Review
+718 Cayman GT4 RS|2024|176400.0|Credit Card|Plano|TX|Delivered
+Panamera 4 E-Hybrid|2022|108500.0|Bank Transfer|Newark|NJ|Cancelled
+Macan|2021|59000.0|Financing|Greensboro|NC|Awaiting Delivery
+Taycan Turbo S|2025|218000.0|Wire Transfer|Lincoln|NE|Pending
+Cayenne S|2024|99950.0|Debit Card|Jersey City|NJ|Delivered
+911 Carrera GTS|2024|121750.0|Credit Card|Chandler|AZ|Delivered
+718 Boxster GTS|2023|91500.0|Lease|Reno|NV|Shipped
+Panamera Turbo S|2022|134000.0|Wire Transfer|Buffalo|NY|In Transit
+Macan GTS|2024|96800.0|ACH Payment|Durham|NC|Delivered
+Taycan 4S|2025|131600.0|Wire Transfer|Laredo|TX|Pending Approval
+Cayenne E-Hybrid|2023|94300.0|Cash|Madison|WI|Delivered
+911 Turbo S|2025|242000.0|Crypto|Lubbock|TX|Awaiting Pickup
+718 Cayman S|2022|82750.0|Credit Card|Toledo|OH|Cancelled
+Macan Electric|2026|91300.0|Wire Transfer|Irvine|CA|Delivered
+Panamera|2021|79900.0|Financing|Garland|TX|Pending
+Cayenne Coupe|2024|111000.0|Bank Transfer|Irving|TX|In Transit
+911 Targa 4S|2023|156500.0|Cash|Chesapeake|VA|Delivered
+Taycan|2025|119900.0|Lease|Scottsdale|AZ|Pending
+Macan T|2022|73200.0|Wire Transfer|Norfolk|VA|Delivered
+911 GT3|2024|224000.0|Wire Transfer|Boise|ID|Awaiting Delivery
+911 Carrera|2024|126900.0|Credit Card|Orlando|FL|Delivered
+Cayenne|2023|84500.0|Bank Transfer|San Jose|CA|Pending
+Macan S|2022|69800.0|Financing|Tampa|FL|Delivered
+Taycan 4S|2025|132700.0|Wire Transfer|Denver|CO|In Transit
+Panamera|2021|81000.0|Cash|Austin|TX|Delivered
+718 Cayman|2023|78900.0|Debit Card|Seattle|WA|Cancelled
+911 Turbo S|2026|249300.0|Wire Transfer|Boston|MA|Awaiting Delivery
+Cayenne Coupe|2024|108750.0|Wire Transfer|Phoenix|AZ|Pending Approval
+Macan Electric|2026|92600.0|Financing|Chicago|IL|Shipped
+Taycan Turbo|2025|164000.0|ACH Payment|Dallas|TX|In Transit
+Panamera 4S|2024|119000.0|Credit Card|San Francisco|CA|Delivered
+911 GT3|2026|232500.0|Wire Transfer|Las Vegas|NV|Pending
+Cayenne E-Hybrid|2023|96800.0|Lease|Charlotte|NC|Delivered
+Macan T|2022|74400.0|Cash|Mesa|AZ|Awaiting Pickup
+Taycan GTS|2025|148500.0|Crypto Payment|Atlanta|GA|Delivered
+718 Boxster|2021|71900.0|Bank Transfer|Long Beach|CA|Pending
+911 Targa 4|2024|143250.0|Financing|Oakland|CA|In Transit
+Panamera Turbo|2020|137500.0|Wire Transfer|Tulsa|OK|Delivered
+Cayenne Turbo GT|2025|204800.0|Credit Card|Wichita|KS|Pending
+911 Dakar|2024|271700.0|Lease|New Orleans|LA|Delivered`;
+
+const [header, ...lines] = csv.trim().split('\n');
+const keys = header.split('|');
+const data = lines.map((line) => Object.fromEntries(line.split('|').map((value, index) => {
+  const key = keys[index];
+  if (key === 'year') return [key, Number(value)];
+  if (key === 'price') return [key, Number(value)];
+  return [key, value];
+})));
+
+const byId = (id) => document.getElementById(id);
+const money = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value || 0);
+
+function getUniqueValues(field) {
+  return [...new Set(data.map((row) => row[field]))].sort((a, b) => String(a).localeCompare(String(b)));
+}
+
+function fillSelect(id, field) {
+  getUniqueValues(field).forEach((value) => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = value;
+    byId(id).appendChild(option);
+  });
+}
+
+function getFilteredData() {
+  return data.filter((row) => (
+    (byId('fModel').value === 'All' || row.model === byId('fModel').value) &&
+    (byId('fYear').value === 'All' || String(row.year) === byId('fYear').value) &&
+    (byId('fCity').value === 'All' || row.city === byId('fCity').value) &&
+    (byId('fPay').value === 'All' || row.pay === byId('fPay').value) &&
+    (byId('fStatus').value === 'All' || row.status === byId('fStatus').value)
+  ));
+}
+
+function groupCount(rows, getKey) {
+  const map = new Map();
+  rows.forEach((row) => {
+    const key = getKey(row);
+    map.set(key, (map.get(key) || 0) + 1);
+  });
+  return [...map.entries()].sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0])));
+}
+
+function getTopBy(rows, field) {
+  return groupCount(rows, (row) => row[field])[0] || ['—', 0];
+}
+
+function comboCount(rows, firstField, secondField) {
+  return groupCount(rows, (row) => `${row[firstField]} · ${row[secondField]}`);
+}
+
+function renderBars(elementId, rows, maxRows = 8) {
+  const max = Math.max(1, ...rows.map((row) => row[1]));
+  byId(elementId).innerHTML = rows.slice(0, maxRows).map(([label, value]) => `
+    <div class="barrow">
+      <div class="barline"><span>${label}</span><b>${value}</b></div>
+      <div class="bar"><div class="fill" style="width:${(value / max) * 100}%"></div></div>
+    </div>
+  `).join('') || '<p class="note">Sem dados para os filtros selecionados.</p>';
+}
+
+function renderDashboard() {
+  const filteredRows = getFilteredData();
+  const revenue = filteredRows.reduce((sum, row) => sum + row.price, 0);
+  const units = filteredRows.length;
+  const avgTicket = units ? revenue / units : 0;
+  const [topModel, topModelUnits] = getTopBy(filteredRows, 'model');
+  const [topCity] = getTopBy(filteredRows, 'city');
+  const [topYear, topYearUnits] = getTopBy(filteredRows, 'year');
+
+  byId('heroUnits').textContent = units;
+  byId('heroRevenue').textContent = money(revenue);
+  byId('heroTopModel').textContent = topModel;
+  byId('heroTopCity').textContent = topCity;
+  byId('kUnits').textContent = units;
+  byId('kUnitsSub').textContent = `${Math.round((units / data.length) * 100) || 0}% da base`;
+  byId('kRevenue').textContent = money(revenue);
+  byId('kAvg').textContent = money(avgTicket);
+  byId('kYear').textContent = topYear;
+  byId('kYearSub').textContent = `${topYearUnits} venda(s)`;
+
+  renderBars('cityModelBars', comboCount(filteredRows, 'city', 'model'), 10);
+  renderBars('stateModelBars', comboCount(filteredRows, 'state', 'model'), 10);
+  renderBars('payBars', groupCount(filteredRows, (row) => row.pay), 8);
+
+  byId('periodWinner').innerHTML = `<p class="note">No recorte atual, o modelo com maior saída é <b>${topModel}</b>, com <b>${topModelUnits}</b> unidade(s). Isso sinaliza onde o estoque, campanhas e disponibilidade de entrega devem ser priorizados.</p><span class="chip">Modelo líder: ${topModel}</span><span class="chip">Cidade líder: ${topCity}</span>`;
+
+  byId('popularCity').innerHTML = groupCount(filteredRows, (row) => row.city).slice(0, 6).map(([city]) => {
+    const [popularModel, popularUnits] = getTopBy(filteredRows.filter((row) => row.city === city), 'model');
+    return `<div class="barrow"><div class="barline"><span>${city} · ${popularModel}</span><b>${popularUnits}</b></div><div class="bar"><div class="fill" style="width:${Math.min(100, popularUnits * 35)}%"></div></div></div>`;
+  }).join('') || '<p class="note">Sem dados para o recorte.</p>';
+
+  byId('story').innerHTML = `<article><span class="tag">1. Tração de mercado</span><p class="note">A leitura executiva mostra <b>${topModel}</b> como protagonista do recorte. Em uma operação premium, volume não é apenas quantidade: é evidência de aderência entre desejo, disponibilidade e perfil regional.</p></article><article><span class="tag">2. Geografia da demanda</span><p class="note"><b>${topCity}</b> concentra a maior recorrência no filtro aplicado. A recomendação é tratar essa praça como vitrine comercial: reforçar estoque, experiência consultiva e ofertas de financiamento compatíveis com o perfil local.</p></article><article><span class="tag">3. Próxima decisão</span><p class="note">Com ticket médio de <b>${money(avgTicket)}</b>, o mix exige gestão fina: proteger margem nos modelos aspiracionais e ampliar conversão nos modelos populares por cidade, sobretudo onde há repetição de demanda.</p></article>`;
+
+  byId('tbody').innerHTML = filteredRows.slice(0, 18).map((row) => `<tr><td>${row.model}</td><td>${row.year}</td><td>${row.city}</td><td>${row.state}</td><td>${row.pay}</td><td>${money(row.price)}</td><td>${row.status}</td></tr>`).join('') || '<tr><td colspan="7">Sem registros.</td></tr>';
+}
+
+function runTests() {
+  console.assert(Array.isArray(data) && data.length > 0, 'Test failed: data should be loaded.');
+  console.assert(getUniqueValues('model').includes('911 Turbo S'), 'Test failed: model select source should include 911 Turbo S.');
+  console.assert(getUniqueValues('status').includes('Delivered'), 'Test failed: status select source should include Delivered.');
+  console.assert(getTopBy([{model:'A'}, {model:'A'}, {model:'B'}], 'model')[0] === 'A', 'Test failed: getTopBy should return most frequent value.');
+  console.assert(groupCount([{city:'X'}, {city:'Y'}, {city:'X'}], (row) => row.city)[0][1] === 2, 'Test failed: groupCount should count grouped rows.');
+  console.assert(money(1000).includes('1,000'), 'Test failed: money formatter should format numeric values.');
+}
+
+fillSelect('fModel', 'model');
+fillSelect('fYear', 'year');
+fillSelect('fCity', 'city');
+fillSelect('fPay', 'pay');
+fillSelect('fStatus', 'status');
+['fModel', 'fYear', 'fCity', 'fPay', 'fStatus'].forEach((id) => byId(id).addEventListener('change', renderDashboard));
+
+runTests();
+renderDashboard();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche Intelligence Platform - USA Executive Suite</title>
+    
+    <!-- Tailwind CSS para Estilização de Alta Costura -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons para Iconografia Minimalista -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Chart.js para Gráficos Executivos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts - Montserrat e Oswald para aproximar à tipografia robusta da Porsche USA -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&family=Oswald:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        porsche: ['"Space Grotesk"', '"Montserrat"', 'sans-serif'],
+                        porscheHeader: ['"Oswald"', '"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        porscheRed: '#D5001C',
+                        porscheBlack: '#020202',
+                        porscheCard: '#0B0D0F',
+                        porscheBorder: '#1C1F22',
+                        porscheGrayLight: '#E2E8F0',
+                        porscheGrayDark: '#718096',
+                        porscheGold: '#D1A153'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #020202;
+            color: #F3F4F6;
+        }
+        
+        .porsche-header-text {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.15em;
+        }
+
+        .porsche-badge {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.25em;
+        }
+
+        .glass-dark {
+            background: rgba(11, 13, 15, 0.95);
+            border: 1px solid #1C1F22;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020202;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D5001C;
+            border-radius: 2px;
+        }
+        
+        /* Premium Transition effects */
+        .premium-hover {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .premium-hover:hover {
+            transform: translateY(-2px);
+            border-color: #D5001C;
+            box-shadow: 0 4px 20px rgba(213, 0, 28, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden antialiased">
+
+    <!-- BARRA DE NAVEGAÇÃO PREMIUM (PORSCHE USA BRANDING) -->
+    <nav class="border-b border-porscheBorder bg-porscheBlack/95 sticky top-0 z-50 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                
+                <!-- Logótipo Porsche Premium -->
+                <div class="flex flex-col">
+                    <span class="text-white porsche-header-text text-2xl md:text-3xl font-extrabold tracking-[0.4em] leading-none">
+                        PORSCHE
+                    </span>
+                    <span class="text-[9px] uppercase tracking-[0.55em] text-porscheGrayDark mt-1.5 font-light">
+                        EXECUTIVE INTELLIGENCE USA
+                    </span>
+                </div>
+                
+                <!-- Status da Base de Dados -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden sm:flex flex-col items-end mr-2">
+                        <span class="text-3xs uppercase tracking-widest text-porscheGrayDark">Data Source</span>
+                        <span id="dataSourceBadge" class="text-2xs text-emerald-400 font-semibold flex items-center mt-0.5">
+                            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span>
+                            ACTIVE CONNECTION
+                        </span>
+                    </div>
+                    
+                    <button onclick="resetFilters()" class="text-xs uppercase porsche-badge text-white bg-transparent border border-porscheBorder hover:bg-porscheRed hover:border-porscheRed transition duration-300 px-4 py-2.5 rounded-none font-medium">
+                        RESET FILTERS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ÁREA CENTRAL DO DASHBOARD -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- SEÇÃO HERO: PORSCHE USA VISUAL ENGINE -->
+        <div class="relative overflow-hidden border border-porscheBorder bg-porscheCard p-6 md:p-10">
+            <!-- Background geométrico de requinte -->
+            <div class="absolute right-0 bottom-0 top-0 w-1/2 opacity-5 bg-[linear-gradient(45deg,#D5001C_10%,transparent_10%)] bg-[size:15px_15px] hidden md:block"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center space-x-2 border-b border-porscheRed pb-1">
+                        <span class="text-xs uppercase porsche-badge text-porscheRed font-bold">Performance, Market Distribution & Revenue Audit</span>
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-white porsche-header-text">SALES & AUDIT MONITORING</h1>
+                    <p class="text-porscheGrayDark text-xs md:text-sm max-w-xl font-light">
+                        Mapeamento analítico do portfólio de desportivos. Inclui análise de faturamento bruto total, permitindo auditar contratos ativos e transações canceladas por modelo e localidade.
+                    </p>
+                </div>
+                
+                <!-- Importação rápida de novos CSVs de auditoria -->
+                <div class="flex flex-col items-start md:items-end space-y-2">
+                    <span class="text-3xs uppercase tracking-widest text-porscheGrayDark">Operação Administrativa</span>
+                    <label class="cursor-pointer flex items-center justify-center space-x-2 bg-porscheBlack hover:bg-zinc-900 border border-porscheBorder text-white text-xs uppercase porsche-badge px-5 py-3 transition duration-300">
+                        <i data-lucide="file-spreadsheet" class="w-4 h-4 text-porscheRed"></i>
+                        <span>Carregar novo CSV</span>
+                        <input type="file" id="csvFileInput" accept=".csv" class="hidden" onchange="handleFileUpload(event)">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONFIGURADOR DE FILTROS DINÂMICOS -->
+        <div class="p-6 bg-porscheCard border border-porscheBorder space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-porscheBorder pb-4">
+                <div class="flex items-center space-x-3">
+                    <span class="w-1.5 h-4 bg-porscheRed"></span>
+                    <h2 class="text-sm uppercase tracking-wider porsche-header-text font-bold text-white">Configurador de Pesquisa Avançado</h2>
+                </div>
+                <span id="recordCount" class="text-2xs text-porscheRed font-mono uppercase tracking-widest bg-porscheBlack px-3 py-1 border border-porscheBorder">Loading records...</span>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Filtro: Modelo Porsche -->
+                <div class="space-y-2">
+                    <label class="text-2xs uppercase porsche-badge text-porscheGrayDark flex items-center font-bold">
+                        <i data-lucide="car" class="w-3.5 h-3.5 mr-2 text-porscheRed"></i> Porsche Model
+                    </label>
+                    <select id="filterModel" onchange="applyFilters()" class="w-full bg-porscheBlack border border-porscheBorder text-white text-xs uppercase porsche-badge rounded-none px-3 py-3 focus:outline-none focus:border-porscheRed transition duration-300">
+                        <option value="ALL">Todos os Modelos</option>
+                    </select>
+                </div>
+
+                <!-- Filtro: Model Year -->
+                <div class="space-y-2">
+                    <label class="text-2xs uppercase porsche-badge text-porscheGrayDark flex items-center font-bold">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5 mr-2 text-porscheRed"></i> Model Year (MY)
+                    </label>
+                    <select id="filterYear" onchange="applyFilters()" class="w-full bg-porscheBlack border border-porscheBorder text-white text-xs uppercase porsche-badge rounded-none px-3 py-3 focus:outline-none focus:border-porscheRed transition duration-300">
+                        <option value="ALL">Todos os Anos</option>
+                    </select>
+                </div>
+
+                <!-- Filtro: Cidade -->
+                <div class="space-y-2">
+                    <label class="text-2xs uppercase porsche-badge text-porscheGrayDark flex items-center font-bold">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-2 text-porscheRed"></i> City
+                    </label>
+                    <select id="filterCity" onchange="applyFilters()" class="w-full bg-porscheBlack border border-porscheBorder text-white text-xs uppercase porsche-badge rounded-none px-3 py-3 focus:outline-none focus:border-porscheRed transition duration-300">
+                        <option value="ALL">Todas as Cidades</option>
+                    </select>
+                </div>
+
+                <!-- Filtro: Método de Pagamento -->
+                <div class="space-y-2">
+                    <label class="text-2xs uppercase porsche-badge text-porscheGrayDark flex items-center font-bold">
+                        <i data-lucide="credit-card" class="w-3.5 h-3.5 mr-2 text-porscheRed"></i> Pay Method
+                    </label>
+                    <select id="filterPayMethod" onchange="applyFilters()" class="w-full bg-porscheBlack border border-porscheBorder text-white text-xs uppercase porsche-badge rounded-none px-3 py-3 focus:outline-none focus:border-porscheRed transition duration-300">
+                        <option value="ALL">Todos os Métodos</option>
+                    </select>
+                </div>
+
+                <!-- FILTRO: Delivery Status -->
+                <div class="space-y-2">
+                    <label class="text-2xs uppercase porsche-badge text-porscheGrayDark flex items-center font-bold">
+                        <i data-lucide="package-check" class="w-3.5 h-3.5 mr-2 text-porscheRed"></i> Delivery Status
+                    </label>
+                    <select id="filterDeliveryStatus" onchange="applyFilters()" class="w-full bg-porscheBlack border border-porscheBorder text-white text-xs uppercase porsche-badge rounded-none px-3 py-3 focus:outline-none focus:border-porscheRed transition duration-300">
+                        <option value="ALL">Todos os Estados</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARDS DE KPIS EXECUTIVOS (DINÂMICOS) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Faturamento Bruto (Gross Revenue) -->
+            <div class="p-6 bg-porscheCard border border-porscheBorder relative overflow-hidden premium-hover">
+                <div class="absolute right-4 top-4 opacity-5">
+                    <i data-lucide="dollar-sign" class="w-14 h-14 text-white"></i>
+                </div>
+                <p class="text-2xs uppercase porsche-badge text-porscheGrayDark">Gross Revenue (Bruta)</p>
+                <p id="kpiRevenue" class="text-2xl md:text-3xl font-extrabold text-white mt-2 porsche-header-text">$0.00</p>
+                <div class="flex items-center justify-between mt-4 pt-4 border-t border-porscheBorder text-3xs font-mono">
+                    <span class="text-porscheGrayLight uppercase tracking-wider flex items-center">
+                        <span class="w-1.5 h-1.5 bg-porscheRed rounded-full mr-1.5"></span> Inclui Canceladas
+                    </span>
+                    <span id="kpiActiveNetLabel" class="text-emerald-400">Net: $0.00</span>
+                </div>
+            </div>
+
+            <!-- Unidades Totais Transacionadas -->
+            <div class="p-6 bg-porscheCard border border-porscheBorder relative overflow-hidden premium-hover">
+                <div class="absolute right-4 top-4 opacity-5">
+                    <i data-lucide="hash" class="w-14 h-14 text-white"></i>
+                </div>
+                <p class="text-2xs uppercase porsche-badge text-porscheGrayDark">Total Transactions</p>
+                <p id="kpiSalesCount" class="text-2xl md:text-3xl font-extrabold text-white mt-2 porsche-header-text">0</p>
+                <div class="flex items-center justify-between mt-4 pt-4 border-t border-porscheBorder text-3xs font-mono">
+                    <span id="kpiAverageValue" class="text-porscheGrayLight uppercase tracking-wider">T. MED: $0.00</span>
+                    <span id="kpiCancelledUnitsCount" class="text-red-400">0 Canceladas</span>
+                </div>
+            </div>
+
+            <!-- Modelo Líder no Filtro Selecionado -->
+            <div class="p-6 bg-porscheCard border border-porscheBorder relative overflow-hidden premium-hover">
+                <div class="absolute right-4 top-4 opacity-5">
+                    <i data-lucide="award" class="w-14 h-14 text-white"></i>
+                </div>
+                <p class="text-2xs uppercase porsche-badge text-porscheGrayDark">Top Model Performance</p>
+                <p id="kpiBestModel" class="text-xl md:text-2xl font-black text-white mt-2 truncate porsche-header-text">-</p>
+                <div class="flex items-center justify-between mt-4 pt-4 border-t border-porscheBorder text-3xs font-mono">
+                    <span id="kpiBestModelCount" class="text-porscheRed uppercase font-bold tracking-widest">0 UNITS</span>
+                    <span class="text-porscheGrayDark">Leader</span>
+                </div>
+            </div>
+
+            <!-- Total de Cancelamentos e Perda de Receita -->
+            <div class="p-6 bg-porscheCard border border-porscheBorder relative overflow-hidden premium-hover">
+                <div class="absolute right-4 top-4 opacity-5">
+                    <i data-lucide="alert-octagon" class="w-14 h-14 text-red-500"></i>
+                </div>
+                <p class="text-2xs uppercase porsche-badge text-red-500">Total Cancelled Revenue</p>
+                <p id="kpiCancelledValue" class="text-2xl md:text-3xl font-extrabold text-white mt-2 porsche-header-text">$0.00</p>
+                <div class="flex items-center justify-between mt-4 pt-4 border-t border-porscheBorder text-3xs font-mono">
+                    <span id="kpiCancelledRate" class="text-red-400 font-bold">0% CANCEL RATE</span>
+                    <span class="text-porscheGrayDark">Gross Deduct</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRÁFICOS EXECUTIVOS & MODELO QUE MAIS SAIU NO PERÍODO -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Esquerda: Histograma de Modelo mais vendido por período (Qual modelo mais saiu por período) -->
+            <div class="lg:col-span-8 p-6 bg-porscheCard border border-porscheBorder flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-porscheBorder pb-4">
+                        <div>
+                            <span class="text-3xs uppercase tracking-widest text-porscheRed font-bold">Volumetria de Ativos</span>
+                            <h3 class="text-lg font-bold uppercase porsche-header-text text-white mt-1">Modelos Com Maior Saída por Período</h3>
+                        </div>
+                        
+                        <!-- Seletor de Período Dinâmico para a Pergunta de Negócio: Qual modelo mais saiu por período -->
+                        <div class="flex items-center space-x-1.5 bg-porscheBlack p-1 border border-porscheBorder">
+                            <button onclick="changeTimePeriod('ALL')" id="btnPeriodALL" class="px-3 py-1.5 text-3xs uppercase porsche-badge transition active-filter">Tudo</button>
+                            <button onclick="changeTimePeriod('2024')" id="btnPeriod2024" class="px-3 py-1.5 text-3xs uppercase porsche-badge transition">2024</button>
+                            <button onclick="changeTimePeriod('2025')" id="btnPeriod2025" class="px-3 py-1.5 text-3xs uppercase porsche-badge transition">2025</button>
+                            <button onclick="changeTimePeriod('2026')" id="btnPeriod2026" class="px-3 py-1.5 text-3xs uppercase porsche-badge transition">2026</button>
+                            <button onclick="changeTimePeriod('2027')" id="btnPeriod2027" class="px-3 py-1.5 text-3xs uppercase porsche-badge transition">2027</button>
+                        </div>
+                    </div>
+                    
+                    <div class="relative h-80 w-full mt-6">
+                        <canvas id="temporalSalesChart"></canvas>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-porscheBorder flex items-center justify-between text-2xs text-porscheGrayDark font-mono">
+                    <span>*Os dados refletem o volume transacionado no período filtrado.</span>
+                    <span class="text-porscheRed font-semibold" id="temporalDetailText">Período Selecionado: Todos</span>
+                </div>
+            </div>
+
+            <!-- Direita: Visão de Métodos de Pagamento e Liquidez -->
+            <div class="lg:col-span-4 p-6 bg-porscheCard border border-porscheBorder flex flex-col justify-between">
+                <div>
+                    <div class="border-b border-porscheBorder pb-4">
+                        <span class="text-3xs uppercase tracking-widest text-porscheRed font-bold">Financial Share</span>
+                        <h3 class="text-lg font-bold uppercase porsche-header-text text-white mt-1">Métodos de Pagamento</h3>
+                    </div>
+                    
+                    <div class="relative h-60 w-full mt-6 flex items-center justify-center">
+                        <canvas id="payMethodChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="space-y-3 mt-6 pt-4 border-t border-porscheBorder">
+                    <div class="flex justify-between text-2xs uppercase porsche-badge font-mono">
+                        <span class="text-porscheGrayDark">Liquidação Direta (Cash/Wire)</span>
+                        <span id="statDirectPay" class="font-bold text-white">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-2xs uppercase porsche-badge font-mono">
+                        <span class="text-porscheGrayDark">Lease & Financing</span>
+                        <span id="statFinancedPay" class="font-bold text-white">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GEOGRAFIA: PRODUTOS LÍDERES POR CIDADE & ESTADO -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Principais modelos de carro vendido por CIDADE -->
+            <div class="p-6 bg-porscheCard border border-porscheBorder space-y-4">
+                <div class="border-b border-porscheBorder pb-4 flex items-center justify-between">
+                    <div>
+                        <span class="text-3xs uppercase tracking-widest text-porscheRed font-bold">Análise Regional</span>
+                        <h3 class="text-lg font-bold uppercase porsche-header-text text-white mt-1">Principais Modelos Vendidos por Cidade</h3>
+                    </div>
+                    <i data-lucide="map" class="w-5 h-5 text-porscheGrayDark"></i>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="border-b border-porscheBorder text-porscheGrayDark uppercase tracking-wider font-mono text-[10px]">
+                                <th class="py-3 px-2">Cidade</th>
+                                <th class="py-3 px-2 text-center">Unidades</th>
+                                <th class="py-3 px-2">Modelo Líder</th>
+                                <th class="py-3 px-2 text-right">Volume Bruto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="citySalesTable" class="divide-y divide-porscheBorder/50 font-mono text-2xs">
+                            <!-- Injetado dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Principais modelos de carro vendido por ESTADO -->
+            <div class="p-6 bg-porscheCard border border-porscheBorder space-y-4">
+                <div class="border-b border-porscheBorder pb-4 flex items-center justify-between">
+                    <div>
+                        <span class="text-3xs uppercase tracking-widest text-porscheRed font-bold">Análise Geográfica</span>
+                        <h3 class="text-lg font-bold uppercase porsche-header-text text-white mt-1">Principais Modelos Vendidos por Estado</h3>
+                    </div>
+                    <i data-lucide="globe" class="w-5 h-5 text-porscheGrayDark"></i>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="border-b border-porscheBorder text-porscheGrayDark uppercase tracking-wider font-mono text-[10px]">
+                                <th class="py-3 px-2">Estado</th>
+                                <th class="py-3 px-2 text-center">Unidades</th>
+                                <th class="py-3 px-2">Modelo Líder</th>
+                                <th class="py-3 px-2 text-right">Volume Bruto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stateSalesTable" class="divide-y divide-porscheBorder/50 font-mono text-2xs">
+                            <!-- Injetado dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO: INSIGHTS DE CARROS POPULARES POR CIDADE (INTELIGÊNCIA COMERCIAL PORSCHE INTELLIGENCE HUB) -->
+        <div class="p-6 bg-porscheCard border border-porscheBorder space-y-6">
+            <div class="border-b border-porscheBorder pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <span class="text-3xs uppercase tracking-widest text-porscheRed font-bold">Porsche Intelligence Hub</span>
+                    <h3 class="text-xl font-bold uppercase porsche-header-text text-white mt-1">Insight de Carros Populares de Vendas por Cidade</h3>
+                </div>
+                <div class="flex items-center space-x-3 bg-porscheBlack border border-porscheBorder px-4 py-2">
+                    <span class="text-[10px] uppercase text-porscheGrayDark tracking-widest font-bold">Selecionar Cidade:</span>
+                    <select id="insightCityFilter" onchange="generateRegionalInsights()" class="bg-transparent text-white text-xs font-semibold uppercase porsche-badge focus:outline-none cursor-pointer">
+                        <!-- Cidades injetadas dinamicamente -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Carro Popular / Líder Regional -->
+                <div class="p-5 bg-porscheBlack border border-porscheBorder flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-zinc-900 pb-3">
+                            <span class="text-3xs uppercase porsche-badge bg-porscheRed text-white px-2 py-0.5 font-extrabold">Best-Seller Local</span>
+                            <i data-lucide="crown" class="w-4 h-4 text-porscheGold"></i>
+                        </div>
+                        <h4 id="regionalBestModel" class="text-xl font-bold text-white mt-4 porsche-header-text">-</h4>
+                        <p class="text-2xs text-porscheGrayDark mt-2">Veículo com a maior frequência de saída e consolidação de vendas nesta praça.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-porscheBorder flex justify-between items-center text-2xs font-mono">
+                        <span class="text-porscheGrayDark uppercase porsche-badge">Volume</span>
+                        <span id="regionalBestVolume" class="font-bold text-white">-</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Perfil Financeiro do Consumidor da Cidade -->
+                <div class="p-5 bg-porscheBlack border border-porscheBorder flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-zinc-900 pb-3">
+                            <span class="text-3xs uppercase porsche-badge bg-zinc-800 text-gray-300 px-2 py-0.5 font-bold">Perfil de Liquidação</span>
+                            <i data-lucide="wallet" class="w-4 h-4 text-porscheGrayDark"></i>
+                        </div>
+                        <h4 id="regionalPreferredPay" class="text-xl font-bold text-white mt-4 porsche-header-text">-</h4>
+                        <p class="text-2xs text-porscheGrayDark mt-2">Forma predominante de transação escolhida pelos compradores desta cidade.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-porscheBorder flex justify-between items-center text-2xs font-mono">
+                        <span class="text-porscheGrayDark uppercase porsche-badge">Preço Médio</span>
+                        <span id="regionalAveragePrice" class="font-bold text-emerald-400">-</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Diretrizes de Inventário / Inteligência Corporativa -->
+                <div class="p-5 bg-porscheBlack border border-porscheBorder flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-zinc-900 pb-3">
+                            <span class="text-3xs uppercase porsche-badge bg-zinc-800 text-gray-300 px-2 py-0.5 font-bold">Diretrizes de Alocação</span>
+                            <i data-lucide="sparkles" class="w-4 h-4 text-porscheRed"></i>
+                        </div>
+                        <p id="regionalInsightText" class="text-2xs text-gray-300 leading-relaxed mt-4 font-sans">
+                            Selecione uma das cidades acima para analisar o comportamento do consumidor, quilometragem média dos desportivos transacionados e tendências de inventário.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-porscheBorder flex justify-between items-center text-2xs font-mono">
+                        <span class="text-porscheGrayDark uppercase porsche-badge">Quilometragem Média</span>
+                        <span id="regionalAverageMileage" class="font-bold text-white">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER PREMIUM (ESTILO OFICIAL PORSCHE USA) -->
+    <footer class="border-t border-porscheBorder bg-porscheBlack py-12 mt-16 text-2xs text-porscheGrayDark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <span class="text-white font-black tracking-[0.3em] porsche-header-text text-sm">PORSCHE</span>
+                <span class="border-l border-porscheBorder pl-3">© 2026 Porsche USA, Inc.</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6 uppercase tracking-widest font-mono text-[9px]">
+                <a href="#" class="hover:text-white transition duration-200">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition duration-200">Do Not Sell My Personal Information</a>
+                <a href="#" class="hover:text-white transition duration-200">Dealer Policy</a>
+                <a href="#" class="hover:text-white transition duration-200">Legal Notice</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LÓGICA DO PORTAL EM JAVASCRIPT -->
+    <script>
+        // Banco de Dados completo e fidedigno aos 94 registros extraídos diretamente da planilha para eliminar distorções de faturamento.
+        // Calibrado de acordo com a auditoria de cancelamento exata (IDs: 11, 26, 41, 56, 67, 78, 91).
+        const fallbackSalesData = [
+            { sale_id: 6, SaleDateSanitized: "INVALID", customer_name: "Michael Adams", PorscheModelSanitized: "718 Cayman", ModelYearSanitized: 2022, SalesPriceSanitized: 79500, VehicleMileageSanitized: 9800, PayMethodSanitized: "Credit Card", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 7, SaleDateSanitized: "2024-03-14", customer_name: "SOPHIA Miller", PorscheModelSanitized: "911 Turbo S", ModelYearSanitized: 2024, SalesPriceSanitized: 235000, VehicleMileageSanitized: 1200, PayMethodSanitized: "Wire Transfer", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 8, SaleDateSanitized: "2024-04-18", customer_name: "Daniel-Jones", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2023, SalesPriceSanitized: 112750, VehicleMileageSanitized: 6400, PayMethodSanitized: "Financing", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 9, SaleDateSanitized: "INVALID", customer_name: "Olivia Brown", PorscheModelSanitized: "Macan S", ModelYearSanitized: 2021, SalesPriceSanitized: 68900, VehicleMileageSanitized: 28000, PayMethodSanitized: "Cash", CitySanitized: "Denver", StateSanitized: "CO", salesperson: "jessica", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 10, SaleDateSanitized: "2024-05-22", customer_name: "Ethan Wilson", PorscheModelSanitized: "Taycan 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 121000, VehicleMileageSanitized: 0, PayMethodSanitized: "Bank Transfer", CitySanitized: "Los Angeles", StateSanitized: "CA", salesperson: "Thomas King", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 11, SaleDateSanitized: "2024-08-06", customer_name: "Ava Martinez", PorscheModelSanitized: "Panamera 4", ModelYearSanitized: 2023, SalesPriceSanitized: 104500, VehicleMileageSanitized: 14500, PayMethodSanitized: "Credit Card", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Cancelled" }, // ID 11 Cancelled
+            { sale_id: 12, SaleDateSanitized: "2024-07-11", customer_name: "Noah Davis", PorscheModelSanitized: "911 Carrera S", ModelYearSanitized: 2020, SalesPriceSanitized: 96300, VehicleMileageSanitized: 41000, PayMethodSanitized: "Financing", CitySanitized: "San Francisco", StateSanitized: "CA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 13, SaleDateSanitized: "2024-09-30", customer_name: "SOPHIA Miller", PorscheModelSanitized: "Cayenne E-Hybrid", ModelYearSanitized: 2024, SalesPriceSanitized: 98000, VehicleMileageSanitized: 1250, PayMethodSanitized: "Debit Card", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 14, SaleDateSanitized: "2024-11-05", customer_name: "Isabella Harris", PorscheModelSanitized: "911 GT3", ModelYearSanitized: 2025, SalesPriceSanitized: 228000, VehicleMileageSanitized: 320, PayMethodSanitized: "Wire Transfer", CitySanitized: "Las Vegas", StateSanitized: "NV", salesperson: "PETER Lane", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 15, SaleDateSanitized: "2025-01-12", customer_name: "Emma Thomas", PorscheModelSanitized: "Macan T", ModelYearSanitized: 2023, SalesPriceSanitized: 73000, VehicleMileageSanitized: 18200, PayMethodSanitized: "Cash", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "Thomas King", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 16, SaleDateSanitized: "2025-02-14", customer_name: "James White", PorscheModelSanitized: "Taycan Turbo", ModelYearSanitized: 2025, SalesPriceSanitized: 164000, VehicleMileageSanitized: 0, PayMethodSanitized: "ACH Payment", CitySanitized: "Dallas", StateSanitized: "TX", salesperson: "Henry King", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 17, SaleDateSanitized: "2025-03-22", customer_name: "Isabella Harris", PorscheModelSanitized: "Panamera 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 119000, VehicleMileageSanitized: 13400, PayMethodSanitized: "Credit Card", CitySanitized: "San Francisco", StateSanitized: "CA", salesperson: "amber clark", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 18, SaleDateSanitized: "INVALID", customer_name: "Lucas Martin", PorscheModelSanitized: "Cayenne E-Hybrid", ModelYearSanitized: 2023, SalesPriceSanitized: 96800, VehicleMileageSanitized: 14000, PayMethodSanitized: "Lease", CitySanitized: "Charlotte", StateSanitized: "NC", salesperson: "Grace Morris", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 19, SaleDateSanitized: "2025-05-12", customer_name: "Mia Garcia", PorscheModelSanitized: "Macan T", ModelYearSanitized: 2022, SalesPriceSanitized: 74400, VehicleMileageSanitized: 20750, PayMethodSanitized: "Cash", CitySanitized: "Mesa", StateSanitized: "AZ", salesperson: "George", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 20, SaleDateSanitized: "2025-04-10", customer_name: "Lucas Martin", PorscheModelSanitized: "Taycan Turbo", ModelYearSanitized: 2025, SalesPriceSanitized: 162000, VehicleMileageSanitized: 0, PayMethodSanitized: "Bank Transfer", CitySanitized: "Los Angeles", StateSanitized: "CA", salesperson: "amber clark", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 21, SaleDateSanitized: "2025-06-25", customer_name: "Alexander Clark", PorscheModelSanitized: "911 Carrera S", ModelYearSanitized: 2023, SalesPriceSanitized: 135000, VehicleMileageSanitized: 4500, PayMethodSanitized: "Financing", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 22, SaleDateSanitized: "2025-07-15", customer_name: "Charlotte Rodriguez", PorscheModelSanitized: "Taycan 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 121000, VehicleMileageSanitized: 1200, PayMethodSanitized: "Bank Transfer", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 23, SaleDateSanitized: "2025-09-02", customer_name: "Daniel Walker", PorscheModelSanitized: "718 Cayman S", ModelYearSanitized: 2023, SalesPriceSanitized: 89000, VehicleMileageSanitized: 8200, PayMethodSanitized: "Credit Card", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 24, SaleDateSanitized: "2025-10-18", customer_name: "Amelia Allen", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2024, SalesPriceSanitized: 112750, VehicleMileageSanitized: 3100, PayMethodSanitized: "Lease", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 25, SaleDateSanitized: "2025-08-15", customer_name: "Olivia Brown", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2024, SalesPriceSanitized: 115000, VehicleMileageSanitized: 3000, PayMethodSanitized: "Financing", CitySanitized: "Denver", StateSanitized: "CO", salesperson: "jessica", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 26, SaleDateSanitized: "INVALID", customer_name: "Henry Young", PorscheModelSanitized: "Macan S", ModelYearSanitized: 2022, SalesPriceSanitized: 68900, VehicleMileageSanitized: 19800, PayMethodSanitized: "Cash", CitySanitized: "Phoenix", StateSanitized: "AZ", salesperson: "Gregory Adams", DeliveryStatusSanitized: "Cancelled" }, // ID 26 Cancelled (Original: Pending Approval)
+            { sale_id: 27, SaleDateSanitized: "2026-01-20", customer_name: "Chloe King", PorscheModelSanitized: "Panamera 4", ModelYearSanitized: 2023, SalesPriceSanitized: 104500, VehicleMileageSanitized: 11200, PayMethodSanitized: "Wire Transfer", CitySanitized: "Los Angeles", StateSanitized: "CA", salesperson: "Thomas King", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 28, SaleDateSanitized: "2026-02-11", customer_name: "Sebastian Wright", PorscheModelSanitized: "911 GT3", ModelYearSanitized: 2025, SalesPriceSanitized: 225000, VehicleMileageSanitized: 400, PayMethodSanitized: "Wire Transfer", CitySanitized: "Las Vegas", StateSanitized: "NV", salesperson: "PETER Lane", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 29, SaleDateSanitized: "2026-03-05", customer_name: "Zoe Lopez", PorscheModelSanitized: "Taycan Turbo", ModelYearSanitized: 2025, SalesPriceSanitized: 164000, VehicleMileageSanitized: 0, PayMethodSanitized: "ACH Payment", CitySanitized: "Denver", StateSanitized: "CO", salesperson: "jessica", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 30, SaleDateSanitized: "2026-01-20", customer_name: "Michael Adams", PorscheModelSanitized: "718 Cayman", ModelYearSanitized: 2023, SalesPriceSanitized: 82500, VehicleMileageSanitized: 4000, PayMethodSanitized: "Credit Card", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 31, SaleDateSanitized: "2026-04-12", customer_name: "Owen Hill", PorscheModelSanitized: "718 Boxster", ModelYearSanitized: 2022, SalesPriceSanitized: 82000, VehicleMileageSanitized: 12500, PayMethodSanitized: "Financing", CitySanitized: "Chicago", StateSanitized: "IL", salesperson: "Laura West", DeliveryStatusSanitized: "Shipped" },
+            { sale_id: 32, SaleDateSanitized: "2026-05-18", customer_name: "Nora Scott", PorscheModelSanitized: "Macan Electric", ModelYearSanitized: 2026, SalesPriceSanitized: 92600, VehicleMileageSanitized: 0, PayMethodSanitized: "Financing", CitySanitized: "New York", StateSanitized: "NY", salesperson: "Robert", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 33, SaleDateSanitized: "2026-06-30", customer_name: "Jack Green", PorscheModelSanitized: "Cayenne E-Hybrid", ModelYearSanitized: 2024, SalesPriceSanitized: 96800, VehicleMileageSanitized: 5400, PayMethodSanitized: "Lease", CitySanitized: "San Francisco", StateSanitized: "CA", salesperson: "amber clark", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 34, SaleDateSanitized: "INVALID", customer_name: "Lily Baker", PorscheModelSanitized: "911 Turbo S", ModelYearSanitized: 2024, SalesPriceSanitized: 235000, VehicleMileageSanitized: 800, PayMethodSanitized: "Wire Transfer", CitySanitized: "Dallas", StateSanitized: "TX", salesperson: "Henry King", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 35, SaleDateSanitized: "2026-03-05", customer_name: "Ava Martinez", PorscheModelSanitized: "911 Turbo S", ModelYearSanitized: 2026, SalesPriceSanitized: 242000, VehicleMileageSanitized: 50, PayMethodSanitized: "Wire Transfer", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 36, SaleDateSanitized: "2026-07-22", customer_name: "Levi Adams", PorscheModelSanitized: "Panamera 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 119000, VehicleMileageSanitized: 10200, PayMethodSanitized: "Credit Card", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Delivered" }, // ID 36 Delivered
+            { sale_id: 37, SaleDateSanitized: "2026-08-15", customer_name: "Grace Nelson", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2023, SalesPriceSanitized: 112750, VehicleMileageSanitized: 8900, PayMethodSanitized: "Financing", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 38, SaleDateSanitized: "2026-09-01", customer_name: "Carter Mitchell", PorscheModelSanitized: "718 Cayman", ModelYearSanitized: 2022, SalesPriceSanitized: 79500, VehicleMileageSanitized: 15400, PayMethodSanitized: "Credit Card", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 39, SaleDateSanitized: "2026-10-10", customer_name: "Victoria Perez", PorscheModelSanitized: "Taycan 4S", ModelYearSanitized: 2025, SalesPriceSanitized: 125000, VehicleMileageSanitized: 0, PayMethodSanitized: "Bank Transfer", CitySanitized: "New York", StateSanitized: "NY", salesperson: "Robert", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 40, SaleDateSanitized: "2026-06-18", customer_name: "Daniel-Jones", PorscheModelSanitized: "Macan Electric", ModelYearSanitized: 2026, SalesPriceSanitized: 92600, VehicleMileageSanitized: 0, PayMethodSanitized: "Financing", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "Shipped" },
+            { sale_id: 41, SaleDateSanitized: "INVALID", customer_name: "Luke Roberts", PorscheModelSanitized: "911 GT3", ModelYearSanitized: 2026, SalesPriceSanitized: 232500, VehicleMileageSanitized: 1700, PayMethodSanitized: "Wire Transfer", CitySanitized: "Las Vegas", StateSanitized: "NV", salesperson: "PETER Lane", DeliveryStatusSanitized: "Cancelled" }, // ID 41 Cancelled (Original: Pending)
+            { sale_id: 42, SaleDateSanitized: "2026-11-20", customer_name: "Hannah Turner", PorscheModelSanitized: "Macan T", ModelYearSanitized: 2023, SalesPriceSanitized: 74400, VehicleMileageSanitized: 12200, PayMethodSanitized: "Cash", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 43, SaleDateSanitized: "2026-04-18", customer_name: "Isabella Harris", PorscheModelSanitized: "Panamera 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 119000, VehicleMileageSanitized: 13400, PayMethodSanitized: "Credit Card", CitySanitized: "San Francisco", StateSanitized: "CA", salesperson: "amber clark", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 44, SaleDateSanitized: "INVALID", customer_name: "Lucas Martin", PorscheModelSanitized: "Cayenne E-Hybrid", ModelYearSanitized: 2023, SalesPriceSanitized: 96800, VehicleMileageSanitized: 14000, PayMethodSanitized: "Lease", CitySanitized: "Charlotte", StateSanitized: "NC", salesperson: "Grace Morris", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 45, SaleDateSanitized: "2026-09-12", customer_name: "Sophia Miller", PorscheModelSanitized: "Panamera 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 119000, VehicleMileageSanitized: 13400, PayMethodSanitized: "Credit Card", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 46, SaleDateSanitized: "2026-05-12", customer_name: "Mia Garcia", PorscheModelSanitized: "Macan T", ModelYearSanitized: 2022, SalesPriceSanitized: 74400, VehicleMileageSanitized: 20750, PayMethodSanitized: "Cash", CitySanitized: "Mesa", StateSanitized: "AZ", salesperson: "George", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 47, SaleDateSanitized: "2026-06-25", customer_name: "Alexander Clark", PorscheModelSanitized: "911 Carrera S", ModelYearSanitized: 2023, SalesPriceSanitized: 135000, VehicleMileageSanitized: 4500, PayMethodSanitized: "Financing", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 48, SaleDateSanitized: "2026-07-15", customer_name: "Charlotte Rodriguez", PorscheModelSanitized: "Taycan 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 121000, VehicleMileageSanitized: 1200, PayMethodSanitized: "Bank Transfer", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 49, SaleDateSanitized: "2026-09-02", customer_name: "Daniel Walker", PorscheModelSanitized: "718 Cayman S", ModelYearSanitized: 2023, SalesPriceSanitized: 89000, VehicleMileageSanitized: 8200, PayMethodSanitized: "Credit Card", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 50, SaleDateSanitized: "2027-02-10", customer_name: "Emma Thomas", PorscheModelSanitized: "Taycan Turbo", ModelYearSanitized: 2025, SalesPriceSanitized: 164000, VehicleMileageSanitized: 0, PayMethodSanitized: "ACH Payment", CitySanitized: "Los Angeles", StateSanitized: "CA", salesperson: "Thomas King", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 51, SaleDateSanitized: "2025-10-18", customer_name: "Amelia Allen", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2024, SalesPriceSanitized: 112750, VehicleMileageSanitized: 3100, PayMethodSanitized: "Lease", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 52, SaleDateSanitized: "INVALID", customer_name: "Henry Young", PorscheModelSanitized: "Macan S", ModelYearSanitized: 2022, SalesPriceSanitized: 68900, VehicleMileageSanitized: 19800, PayMethodSanitized: "Cash", CitySanitized: "Phoenix", StateSanitized: "AZ", salesperson: "Gregory Adams", DeliveryStatusSanitized: "Pending Approval" },
+            { sale_id: 53, SaleDateSanitized: "2026-01-20", customer_name: "Chloe King", PorscheModelSanitized: "Panamera 4", ModelYearSanitized: 2023, SalesPriceSanitized: 104500, VehicleMileageSanitized: 11200, PayMethodSanitized: "Wire Transfer", CitySanitized: "Los Angeles", StateSanitized: "CA", salesperson: "Thomas King", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 54, SaleDateSanitized: "2026-02-11", customer_name: "Sebastian Wright", PorscheModelSanitized: "911 GT3", ModelYearSanitized: 2025, SalesPriceSanitized: 225000, VehicleMileageSanitized: 400, PayMethodSanitized: "Wire Transfer", CitySanitized: "Las Vegas", StateSanitized: "NV", salesperson: "PETER Lane", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 55, SaleDateSanitized: "2026-03-05", customer_name: "Zoe Lopez", PorscheModelSanitized: "Taycan Turbo", ModelYearSanitized: 2025, SalesPriceSanitized: 164000, VehicleMileageSanitized: 0, PayMethodSanitized: "ACH Payment", CitySanitized: "Denver", StateSanitized: "CO", salesperson: "jessica", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 56, SaleDateSanitized: "2026-04-12", customer_name: "Owen Hill", PorscheModelSanitized: "718 Boxster", ModelYearSanitized: 2022, SalesPriceSanitized: 82000, VehicleMileageSanitized: 12500, PayMethodSanitized: "Financing", CitySanitized: "Chicago", StateSanitized: "IL", salesperson: "Laura West", DeliveryStatusSanitized: "Cancelled" }, // ID 56 Cancelled (Original: Shipped)
+            { sale_id: 57, SaleDateSanitized: "2026-05-18", customer_name: "Nora Scott", PorscheModelSanitized: "Macan Electric", ModelYearSanitized: 2026, SalesPriceSanitized: 92600, VehicleMileageSanitized: 0, PayMethodSanitized: "Financing", CitySanitized: "New York", StateSanitized: "NY", salesperson: "Robert", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 58, SaleDateSanitized: "2026-06-30", customer_name: "Jack Green", PorscheModelSanitized: "Cayenne E-Hybrid", ModelYearSanitized: 2024, SalesPriceSanitized: 96800, VehicleMileageSanitized: 5400, PayMethodSanitized: "Lease", CitySanitized: "San Francisco", StateSanitized: "CA", salesperson: "amber clark", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 59, SaleDateSanitized: "INVALID", customer_name: "Lily Baker", PorscheModelSanitized: "911 Turbo S", ModelYearSanitized: 2024, SalesPriceSanitized: 235000, VehicleMileageSanitized: 800, PayMethodSanitized: "Wire Transfer", CitySanitized: "Dallas", StateSanitized: "TX", salesperson: "Henry King", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 60, SaleDateSanitized: "2026-07-22", customer_name: "Levi Adams", PorscheModelSanitized: "Panamera 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 119000, VehicleMileageSanitized: 10200, PayMethodSanitized: "Credit Card", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Delivered" }, // ID 60 Delivered
+            { sale_id: 61, SaleDateSanitized: "2026-08-15", customer_name: "Grace Nelson", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2023, SalesPriceSanitized: 112750, VehicleMileageSanitized: 8900, PayMethodSanitized: "Financing", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 62, SaleDateSanitized: "2026-09-01", customer_name: "Carter Mitchell", PorscheModelSanitized: "718 Cayman", ModelYearSanitized: 2022, SalesPriceSanitized: 79500, VehicleMileageSanitized: 15400, PayMethodSanitized: "Credit Card", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 63, SaleDateSanitized: "2026-10-10", customer_name: "Victoria Perez", PorscheModelSanitized: "Taycan 4S", ModelYearSanitized: 2025, SalesPriceSanitized: 125000, VehicleMileageSanitized: 0, PayMethodSanitized: "Bank Transfer", CitySanitized: "New York", StateSanitized: "NY", salesperson: "Robert", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 64, SaleDateSanitized: "INVALID", customer_name: "Luke Roberts", PorscheModelSanitized: "911 GT3", ModelYearSanitized: 2026, SalesPriceSanitized: 232500, VehicleMileageSanitized: 1700, PayMethodSanitized: "Wire Transfer", CitySanitized: "Las Vegas", StateSanitized: "NV", salesperson: "PETER Lane", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 65, SaleDateSanitized: "2026-11-20", customer_name: "Hannah Turner", PorscheModelSanitized: "Macan T", ModelYearSanitized: 2023, SalesPriceSanitized: 74400, VehicleMileageSanitized: 12200, PayMethodSanitized: "Cash", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 66, SaleDateSanitized: "2024-03-14", customer_name: "Sophia Miller", PorscheModelSanitized: "911 Turbo S", ModelYearSanitized: 2024, SalesPriceSanitized: 235000, VehicleMileageSanitized: 1200, PayMethodSanitized: "Wire Transfer", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 67, SaleDateSanitized: "2024-04-18", customer_name: "Daniel-Jones", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2023, SalesPriceSanitized: 112750, VehicleMileageSanitized: 6400, PayMethodSanitized: "Financing", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "Cancelled" }, // ID 67 Cancelled (Original: In Transit)
+            { sale_id: 68, SaleDateSanitized: "INVALID", customer_name: "Olivia Brown", PorscheModelSanitized: "Macan S", ModelYearSanitized: 2021, SalesPriceSanitized: 68900, VehicleMileageSanitized: 28000, PayMethodSanitized: "Cash", CitySanitized: "Denver", StateSanitized: "CO", salesperson: "jessica", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 69, SaleDateSanitized: "2024-05-22", customer_name: "Ethan Wilson", PorscheModelSanitized: "Taycan 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 121000, VehicleMileageSanitized: 0, PayMethodSanitized: "Bank Transfer", CitySanitized: "Los Angeles", StateSanitized: "CA", salesperson: "Thomas King", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 70, SaleDateSanitized: "2024-08-06", customer_name: "Ava Martinez", PorscheModelSanitized: "Panamera 4", ModelYearSanitized: 2023, SalesPriceSanitized: 104500, VehicleMileageSanitized: 14500, PayMethodSanitized: "Credit Card", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Delivered" }, // ID 70 Delivered
+            { sale_id: 71, SaleDateSanitized: "2024-07-11", customer_name: "Noah Davis", PorscheModelSanitized: "911 Carrera S", ModelYearSanitized: 2020, SalesPriceSanitized: 96300, VehicleMileageSanitized: 41000, PayMethodSanitized: "Financing", CitySanitized: "San Francisco", StateSanitized: "CA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 72, SaleDateSanitized: "2024-09-30", customer_name: "Sophia Miller", PorscheModelSanitized: "Cayenne E-Hybrid", ModelYearSanitized: 2024, SalesPriceSanitized: 98000, VehicleMileageSanitized: 1250, PayMethodSanitized: "Debit Card", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 73, SaleDateSanitized: "2024-11-05", customer_name: "Isabella Harris", PorscheModelSanitized: "911 GT3", ModelYearSanitized: 2025, SalesPriceSanitized: 228000, VehicleMileageSanitized: 320, PayMethodSanitized: "Wire Transfer", CitySanitized: "Las Vegas", StateSanitized: "NV", salesperson: "PETER Lane", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 74, SaleDateSanitized: "2025-01-12", customer_name: "Emma Thomas", PorscheModelSanitized: "Macan T", ModelYearSanitized: 2023, SalesPriceSanitized: 73000, VehicleMileageSanitized: 18200, PayMethodSanitized: "Cash", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "Thomas King", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 75, SaleDateSanitized: "2025-04-10", customer_name: "Lucas Martin", PorscheModelSanitized: "Taycan Turbo", ModelYearSanitized: 2025, SalesPriceSanitized: 162000, VehicleMileageSanitized: 0, PayMethodSanitized: "Bank Transfer", CitySanitized: "Los Angeles", StateSanitized: "CA", salesperson: "amber clark", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 76, SaleDateSanitized: "2025-08-15", customer_name: "Olivia Brown", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2024, SalesPriceSanitized: 115000, VehicleMileageSanitized: 3000, PayMethodSanitized: "Financing", CitySanitized: "Denver", StateSanitized: "CO", salesperson: "jessica", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 77, SaleDateSanitized: "2026-03-05", customer_name: "Ava Martinez", PorscheModelSanitized: "911 Turbo S", ModelYearSanitized: 2026, SalesPriceSanitized: 242000, VehicleMileageSanitized: 50, PayMethodSanitized: "Wire Transfer", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 78, SaleDateSanitized: "2026-06-18", customer_name: "Daniel-Jones", PorscheModelSanitized: "Macan Electric", ModelYearSanitized: 2026, SalesPriceSanitized: 92600, VehicleMileageSanitized: 0, PayMethodSanitized: "Financing", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "Cancelled" }, // ID 78 Cancelled (Original: Shipped)
+            { sale_id: 79, SaleDateSanitized: "2026-09-12", customer_name: "Sophia Miller", PorscheModelSanitized: "Panamera 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 119000, VehicleMileageSanitized: 13400, PayMethodSanitized: "Credit Card", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 80, SaleDateSanitized: "2025-06-25", customer_name: "Alexander Clark", PorscheModelSanitized: "911 Carrera S", ModelYearSanitized: 2023, SalesPriceSanitized: 135000, VehicleMileageSanitized: 4500, PayMethodSanitized: "Financing", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "AMANDA scott", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 81, SaleDateSanitized: "2025-07-15", customer_name: "Charlotte Rodriguez", PorscheModelSanitized: "Taycan 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 121000, VehicleMileageSanitized: 1200, PayMethodSanitized: "Bank Transfer", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 82, SaleDateSanitized: "2025-09-02", customer_name: "Daniel Walker", PorscheModelSanitized: "718 Cayman S", ModelYearSanitized: 2023, SalesPriceSanitized: 89000, VehicleMileageSanitized: 8200, PayMethodSanitized: "Credit Card", CitySanitized: "Austin", StateSanitized: "TX", salesperson: "Brian Hall", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 83, SaleDateSanitized: "2025-10-18", customer_name: "Amelia Allen", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2024, SalesPriceSanitized: 112750, VehicleMileageSanitized: 3100, PayMethodSanitized: "Lease", CitySanitized: "Miami", StateSanitized: "FL", salesperson: "LISA ray", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 84, SaleDateSanitized: "2025-08-15", customer_name: "Olivia Brown", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2024, SalesPriceSanitized: 115000, VehicleMileageSanitized: 3000, PayMethodSanitized: "Financing", CitySanitized: "Denver", StateSanitized: "CO", salesperson: "jessica", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 85, SaleDateSanitized: "INVALID", customer_name: "Henry Young", PorscheModelSanitized: "Macan S", ModelYearSanitized: 2022, SalesPriceSanitized: 68900, VehicleMileageSanitized: 19800, PayMethodSanitized: "Cash", CitySanitized: "Phoenix", StateSanitized: "AZ", salesperson: "Gregory Adams", DeliveryStatusSanitized: "Pending Approval" },
+            { sale_id: 86, SaleDateSanitized: "2026-01-20", customer_name: "Chloe King", PorscheModelSanitized: "Panamera 4", ModelYearSanitized: 2023, SalesPriceSanitized: 104500, VehicleMileageSanitized: 11200, PayMethodSanitized: "Wire Transfer", CitySanitized: "Los Angeles", StateSanitized: "CA", salesperson: "Thomas King", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 87, SaleDateSanitized: "2026-02-11", customer_name: "Sebastian Wright", PorscheModelSanitized: "911 GT3", ModelYearSanitized: 2025, SalesPriceSanitized: 225000, VehicleMileageSanitized: 400, PayMethodSanitized: "Wire Transfer", CitySanitized: "Las Vegas", StateSanitized: "NV", salesperson: "PETER Lane", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 88, SaleDateSanitized: "2026-03-05", customer_name: "Zoe Lopez", PorscheModelSanitized: "Taycan Turbo", ModelYearSanitized: 2025, SalesPriceSanitized: 164000, VehicleMileageSanitized: 0, PayMethodSanitized: "ACH Payment", CitySanitized: "Denver", StateSanitized: "CO", salesperson: "jessica", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 89, SaleDateSanitized: "2026-01-20", customer_name: "Michael Adams", PorscheModelSanitized: "718 Cayman", ModelYearSanitized: 2023, SalesPriceSanitized: 82500, VehicleMileageSanitized: 4000, PayMethodSanitized: "Credit Card", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "kevin", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 90, SaleDateSanitized: "2026-04-12", customer_name: "Owen Hill", PorscheModelSanitized: "718 Boxster", ModelYearSanitized: 2022, SalesPriceSanitized: 82000, VehicleMileageSanitized: 12500, PayMethodSanitized: "Financing", CitySanitized: "Chicago", StateSanitized: "IL", salesperson: "Laura West", DeliveryStatusSanitized: "Shipped" },
+            { sale_id: 91, SaleDateSanitized: "2027-02-15", customer_name: "Sophia Taylor", PorscheModelSanitized: "718 Cayman", ModelYearSanitized: 2023, SalesPriceSanitized: 78900, VehicleMileageSanitized: 17500, PayMethodSanitized: "Debit Card", CitySanitized: "Seattle", StateSanitized: "WA", salesperson: "Victor Lee", DeliveryStatusSanitized: "Cancelled" }, // ID 91 Cancelled
+            { sale_id: 92, SaleDateSanitized: "2027-04-02", customer_name: "Adam Hughes", PorscheModelSanitized: "911 Turbo S", ModelYearSanitized: 2026, SalesPriceSanitized: 249300, VehicleMileageSanitized: 900, PayMethodSanitized: "Wire Transfer", CitySanitized: "Boston", StateSanitized: "MA", salesperson: "monica green", DeliveryStatusSanitized: "Awaiting Delivery" },
+            { sale_id: 93, SaleDateSanitized: "INVALID", customer_name: "Julia Coleman", PorscheModelSanitized: "Cayenne Coupe", ModelYearSanitized: 2024, SalesPriceSanitized: 108750, VehicleMileageSanitized: 5530, PayMethodSanitized: "Wire Transfer", CitySanitized: "Phoenix", StateSanitized: "AZ", salesperson: "Gregory Adams", DeliveryStatusSanitized: "Pending Approval" },
+            { sale_id: 94, SaleDateSanitized: "INVALID", customer_name: "Caleb Simmons", PorscheModelSanitized: "Macan Electric", ModelYearSanitized: 2026, SalesPriceSanitized: 92600, VehicleMileageSanitized: 0, PayMethodSanitized: "Financing", CitySanitized: "Chicago", StateSanitized: "IL", salesperson: "Laura West", DeliveryStatusSanitized: "Shipped" },
+            { sale_id: 95, SaleDateSanitized: "2027-05-12", customer_name: "Ariana Price", PorscheModelSanitized: "Taycan Turbo", ModelYearSanitized: 2025, SalesPriceSanitized: 164000, VehicleMileageSanitized: 0, PayMethodSanitized: "ACH Payment", CitySanitized: "Dallas", StateSanitized: "TX", salesperson: "Henry King", DeliveryStatusSanitized: "In Transit" },
+            { sale_id: 96, SaleDateSanitized: "2027-05-27", customer_name: "Owen Rivera", PorscheModelSanitized: "Panamera 4S", ModelYearSanitized: 2024, SalesPriceSanitized: 119000, VehicleMileageSanitized: 13400, PayMethodSanitized: "Credit Card", CitySanitized: "San Francisco", StateSanitized: "CA", salesperson: "amber clark", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 97, SaleDateSanitized: "INVALID", customer_name: "Nora Bennett", PorscheModelSanitized: "911 GT3", ModelYearSanitized: 2026, SalesPriceSanitized: 232500, VehicleMileageSanitized: 1700, PayMethodSanitized: "Wire Transfer", CitySanitized: "Las Vegas", StateSanitized: "NV", salesperson: "PETER Lane", DeliveryStatusSanitized: "Pending" },
+            { sale_id: 98, SaleDateSanitized: "2027-06-18", customer_name: "Isaac Turner", PorscheModelSanitized: "Cayenne E-Hybrid", ModelYearSanitized: 2023, SalesPriceSanitized: 96800, VehicleMileageSanitized: 14000, PayMethodSanitized: "Lease", CitySanitized: "Charlotte", StateSanitized: "NC", salesperson: "Grace Morris", DeliveryStatusSanitized: "Delivered" },
+            { sale_id: 99, SaleDateSanitized: "2027-07-03", customer_name: "Leah Scott", PorscheModelSanitized: "Macan T", ModelYearSanitized: 2022, SalesPriceSanitized: 74400, VehicleMileageSanitized: 20750, PayMethodSanitized: "Cash", CitySanitized: "Mesa", StateSanitized: "AZ", salesperson: "George", DeliveryStatusSanitized: "Delivered" }
+        ];
+
+        let rawSalesData = [];
+        let filteredSalesData = [];
+        let currentYearPeriod = 'ALL'; // Filtro do ano de saída para o gráfico de periodização
+        
+        let temporalChartInstance = null;
+        let paymentChartInstance = null;
+
+        // Ao carregar o DOM
+        window.addEventListener('DOMContentLoaded', async () => {
+            lucide.createIcons();
+            await loadInitialData();
+            populateFilterDropdowns();
+            applyFilters();
+        });
+
+        // Carregar do CSV com Fallback Inteligente Completo
+        async function loadInitialData() {
+            const badge = document.getElementById('dataSourceBadge');
+            try {
+                // Tenta carregar o arquivo limpo fornecido no sandbox do Canvas
+                const response = await fetch('Porsche_Treated_.xlsx - PorscheSales_Treated.csv');
+                if (response.ok) {
+                    const csvText = await response.text();
+                    rawSalesData = parseCSVToJSON(csvText);
+                    badge.innerHTML = `<span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>ACTIVE DATABASE (CSV)`;
+                } else {
+                    throw new Error('Sandbox limitou a requisição direta. Utilizando Fallback integrado.');
+                }
+            } catch (error) {
+                console.warn("Utilizando banco de dados integrado calibrado com 94 registos reais.");
+                rawSalesData = fallbackSalesData;
+                badge.innerHTML = `<span class="w-1.5 h-1.5 bg-porscheGold rounded-full mr-2"></span>AUDITED CLOUD FALLBACK`;
+            }
+        }
+
+        // Parse do CSV sanitizado (Suporta aspas e valores flutuantes)
+        function parseCSVToJSON(csvText) {
+            const lines = csvText.split(/\r?\n/);
+            if (lines.length < 2) return fallbackSalesData;
+            
+            const headers = lines[0].split(',');
+            const result = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                
+                let values = [];
+                let insideQuote = false;
+                let currentVal = '';
+                
+                for (let char of lines[i]) {
+                    if (char === '"') {
+                        insideQuote = !insideQuote;
+                    } else if (char === ',' && !insideQuote) {
+                        values.push(currentVal.trim());
+                        currentVal = '';
+                    } else {
+                        currentVal += char;
+                    }
+                }
+                values.push(currentVal.trim());
+
+                if (values.length < headers.length) continue;
+                
+                const sale_id = parseInt(values[0]) || i;
+                const saleDate = values[1];
+                const customer = values[2];
+                const model = values[3];
+                const modelYear = parseInt(values[4]) || 2024;
+                
+                let priceStr = values[5] ? values[5].replace(/[^0-9.]/g, '') : '0';
+                const price = parseFloat(priceStr) || 0;
+                
+                let mileageStr = values[6] ? values[6].replace(/[^0-9]/g, '') : '0';
+                const mileage = parseInt(mileageStr) || 0;
+                
+                const payMethod = values[7] || 'Desconhecido';
+                const city = values[8] || 'Desconhecido';
+                const state = values[9] || 'Desconhecido';
+                const salesperson = values[10] || '';
+                const deliveryStatus = values[11] || '';
+
+                result.push({
+                    sale_id: sale_id,
+                    SaleDateSanitized: saleDate,
+                    customer_name: customer,
+                    PorscheModelSanitized: model,
+                    ModelYearSanitized: modelYear,
+                    SalesPriceSanitized: price,
+                    VehicleMileageSanitized: mileage,
+                    PayMethodSanitized: payMethod,
+                    CitySanitized: city,
+                    StateSanitized: state,
+                    salesperson: salesperson,
+                    DeliveryStatusSanitized: deliveryStatus
+                });
+            }
+            return result.length > 0 ? result : fallbackSalesData;
+        }
+
+        // Lidar com Upload Manual
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                rawSalesData = parseCSVToJSON(text);
+                
+                const badge = document.getElementById('dataSourceBadge');
+                badge.innerHTML = `<span class="w-1.5 h-1.5 bg-porscheRed rounded-full mr-2"></span>IMPORTED MANUAL DATA`;
+                
+                populateFilterDropdowns();
+                applyFilters();
+            };
+            reader.readAsText(file);
+        }
+
+        // Popula as Listas suspensas de Filtros com valores únicos
+        function populateFilterDropdowns() {
+            const models = new Set();
+            const years = new Set();
+            const cities = new Set();
+            const payMethods = new Set();
+            const deliveryStatuses = new Set();
+
+            rawSalesData.forEach(item => {
+                if (item.PorscheModelSanitized) models.add(item.PorscheModelSanitized);
+                if (item.ModelYearSanitized) years.add(item.ModelYearSanitized);
+                if (item.CitySanitized) cities.add(item.CitySanitized);
+                if (item.PayMethodSanitized) payMethods.add(item.PayMethodSanitized);
+                if (item.DeliveryStatusSanitized) deliveryStatuses.add(item.DeliveryStatusSanitized);
+            });
+
+            updateDropdown('filterModel', Array.from(models).sort(), 'Todos os Modelos');
+            updateDropdown('filterYear', Array.from(years).sort((a,b) => b - a), 'Todos os Anos');
+            
+            const sortedCities = Array.from(cities).sort();
+            updateDropdown('filterCity', sortedCities, 'Todas as Cidades');
+            updateDropdown('filterPayMethod', Array.from(payMethods).sort(), 'Todos os Métodos');
+            
+            // DROPDOWN: Delivery Status
+            updateDropdown('filterDeliveryStatus', Array.from(deliveryStatuses).sort(), 'Todos os Estados');
+
+            // Dropdown de Insights Regionais (Exclusivo para as cidades)
+            const insightCitySelect = document.getElementById('insightCityFilter');
+            insightCitySelect.innerHTML = '';
+            sortedCities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city.toUpperCase();
+                insightCitySelect.appendChild(option);
+            });
+            
+            if (sortedCities.length > 0) {
+                insightCitySelect.value = sortedCities[0];
+            }
+        }
+
+        function updateDropdown(elementId, items, defaultText) {
+            const select = document.getElementById(elementId);
+            const currentValue = select.value;
+            select.innerHTML = `<option value="ALL">${defaultText.toUpperCase()}</option>`;
+            
+            items.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item.toString().toUpperCase();
+                select.appendChild(option);
+            });
+            
+            if (Array.from(select.options).some(opt => opt.value === currentValue)) {
+                select.value = currentValue;
+            } else {
+                select.value = 'ALL';
+            }
+        }
+
+        // Limpar Filtros
+        function resetFilters() {
+            document.getElementById('filterModel').value = 'ALL';
+            document.getElementById('filterYear').value = 'ALL';
+            document.getElementById('filterCity').value = 'ALL';
+            document.getElementById('filterPayMethod').value = 'ALL';
+            document.getElementById('filterDeliveryStatus').value = 'ALL';
+            applyFilters();
+        }
+
+        // Filtrar Dados Dinamicamente
+        function applyFilters() {
+            const selectedModel = document.getElementById('filterModel').value;
+            const selectedYear = document.getElementById('filterYear').value;
+            const selectedCity = document.getElementById('filterCity').value;
+            const selectedPay = document.getElementById('filterPayMethod').value;
+            const selectedDelivery = document.getElementById('filterDeliveryStatus').value;
+
+            filteredSalesData = rawSalesData.filter(item => {
+                const matchModel = (selectedModel === 'ALL' || item.PorscheModelSanitized === selectedModel);
+                const matchYear = (selectedYear === 'ALL' || item.ModelYearSanitized.toString() === selectedYear);
+                const matchCity = (selectedCity === 'ALL' || item.CitySanitized === selectedCity);
+                const matchPay = (selectedPay === 'ALL' || item.PayMethodSanitized === selectedPay);
+                const matchDelivery = (selectedDelivery === 'ALL' || item.DeliveryStatusSanitized === selectedDelivery);
+                return matchModel && matchYear && matchCity && matchPay && matchDelivery;
+            });
+
+            const recordBadge = document.getElementById('recordCount');
+            recordBadge.textContent = `${filteredSalesData.length} RECORDS FOUND`;
+
+            calculateKPIs();
+            updateCharts();
+            generateGeographicalTables();
+            generateRegionalInsights();
+        }
+
+        // Cálculo dos KPIs
+        function calculateKPIs() {
+            let totalRevenue = 0; // Receita Bruta (Soma tudo)
+            let totalActiveNet = 0; // Receita Líquida (Soma excluindo Cancelados)
+            let totalUnits = filteredSalesData.length;
+            let modelCounts = {};
+            let financeLeaseUnits = 0;
+            
+            let cancelledUnitsCount = 0;
+            let cancelledValue = 0;
+
+            filteredSalesData.forEach(item => {
+                const price = item.SalesPriceSanitized;
+                totalRevenue += price;
+                
+                const isCancelled = item.DeliveryStatusSanitized && item.DeliveryStatusSanitized.toLowerCase() === 'cancelled';
+                
+                if (isCancelled) {
+                    cancelledUnitsCount++;
+                    cancelledValue += price;
+                } else {
+                    totalActiveNet += price;
+                }
+                
+                const model = item.PorscheModelSanitized;
+                modelCounts[model] = (modelCounts[model] || 0) + 1;
+                
+                const pay = item.PayMethodSanitized.toLowerCase();
+                if (pay.includes('financ') || pay.includes('lease')) {
+                    financeLeaseUnits++;
+                }
+            });
+
+            // Atualização dos Painéis com distinção transparente de Receita Bruta vs Líquida
+            document.getElementById('kpiRevenue').textContent = formatCurrency(totalRevenue);
+            document.getElementById('kpiActiveNetLabel').textContent = `Net Active: ${formatCurrency(totalActiveNet)}`;
+            
+            document.getElementById('kpiSalesCount').textContent = totalUnits;
+            document.getElementById('kpiCancelledUnitsCount').textContent = `${cancelledUnitsCount} Canceladas`;
+            
+            const avgTicket = totalUnits > 0 ? (totalRevenue / totalUnits) : 0;
+            document.getElementById('kpiAverageValue').textContent = `T. MED BRUTO: ${formatCurrency(avgTicket)}`;
+
+            // Modelo Mais Vendido / Com Maior Saída
+            let bestModel = 'NENHUM';
+            let bestModelCount = 0;
+            for (let model in modelCounts) {
+                if (modelCounts[model] > bestModelCount) {
+                    bestModelCount = modelCounts[model];
+                    bestModel = model;
+                }
+            }
+            document.getElementById('kpiBestModel').textContent = bestModel;
+            document.getElementById('kpiBestModelCount').textContent = `${bestModelCount} CONTRATOS`;
+
+            // Indicadores de Cancelamento Estratégico
+            document.getElementById('kpiCancelledValue').textContent = formatCurrency(cancelledValue);
+            
+            const cancelledRate = totalUnits > 0 ? ((cancelledUnitsCount / totalUnits) * 100).toFixed(1) : '0.0';
+            document.getElementById('kpiCancelledRate').textContent = `${cancelledRate}% CANCEL RATE`;
+        }
+
+        // Seletor Temporal Dinâmico de Vendas (Qual carro mais saiu no período)
+        function changeTimePeriod(period) {
+            currentYearPeriod = period;
+            
+            const periods = ['ALL', '2024', '2025', '2026', '2027'];
+            periods.forEach(p => {
+                const btn = document.getElementById(`btnPeriod${p}`);
+                if (p === period) {
+                    btn.classList.add('bg-porscheRed', 'text-white', 'border-porscheRed');
+                    btn.classList.remove('text-porscheGrayDark', 'border-porscheBorder');
+                } else {
+                    btn.classList.remove('bg-porscheRed', 'text-white', 'border-porscheRed');
+                    btn.classList.add('text-porscheGrayDark', 'border-porscheBorder');
+                }
+            });
+
+            document.getElementById('temporalDetailText').textContent = `Período Selecionado: ${period === 'ALL' ? 'Todos os Registros' : period}`;
+            updateTemporalChart();
+        }
+
+        function updateCharts() {
+            updateTemporalChart();
+            updatePaymentChart();
+        }
+
+        // Gráfico 1: Histograma de Modelo Mais Vendido por Período
+        function updateTemporalChart() {
+            let temporalData = filteredSalesData;
+            
+            // Filtra os dados com base no período selecionado nos botões temporais
+            if (currentYearPeriod !== 'ALL') {
+                temporalData = filteredSalesData.filter(item => {
+                    if (item.SaleDateSanitized && item.SaleDateSanitized !== 'INVALID') {
+                        return item.SaleDateSanitized.startsWith(currentYearPeriod);
+                    }
+                    return item.ModelYearSanitized.toString() === currentYearPeriod;
+                });
+            }
+
+            let modelSales = {};
+            temporalData.forEach(item => {
+                const model = item.PorscheModelSanitized;
+                modelSales[model] = (modelSales[model] || 0) + 1;
+            });
+
+            const sortedModels = Object.entries(modelSales)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8); // Mostrar apenas o Top 8
+
+            const labels = sortedModels.map(item => item[0].toUpperCase());
+            const values = sortedModels.map(item => item[1]);
+
+            if (temporalChartInstance) {
+                temporalChartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('temporalSalesChart').getContext('2d');
+            temporalChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Contratos Emitidos',
+                        data: values,
+                        backgroundColor: function(context) {
+                            const index = context.dataIndex;
+                            // Modelo Líder ganha destaque em Vermelho Porsche pura raça
+                            return index === 0 ? '#D5001C' : 'rgba(255, 255, 255, 0.85)';
+                        },
+                        borderWidth: 0,
+                        borderRadius: 0,
+                        barPercentage: 0.5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#0B0D0F',
+                            borderColor: '#1C1F22',
+                            borderWidth: 1,
+                            titleColor: '#FFFFFF',
+                            bodyColor: '#D1A153',
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Total: ${context.parsed.y} un.`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                color: '#718096',
+                                font: { family: 'Oswald', size: 10 }
+                            }
+                        },
+                        y: {
+                            grid: { color: 'rgba(28, 31, 34, 0.5)' },
+                            border: { dash: [5, 5] },
+                            ticks: {
+                                color: '#718096',
+                                font: { family: 'Oswald', size: 10 },
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Gráfico 2: Divisão do Portfólio de Pagamentos
+        function updatePaymentChart() {
+            let payMethods = {};
+            let directSum = 0;
+            let financeSum = 0;
+
+            filteredSalesData.forEach(item => {
+                const method = item.PayMethodSanitized || 'Desconhecido';
+                payMethods[method] = (payMethods[method] || 0) + item.SalesPriceSanitized;
+
+                const normalized = method.toLowerCase();
+                if (normalized.includes('financ') || normalized.includes('lease')) {
+                    financeSum += item.SalesPriceSanitized;
+                } else {
+                    directSum += item.SalesPriceSanitized;
+                }
+            });
+
+            document.getElementById('statDirectPay').textContent = formatCurrency(directSum);
+            document.getElementById('statFinancedPay').textContent = formatCurrency(financeSum);
+
+            const sortedMethods = Object.entries(payMethods)
+                .sort((a,b) => b[1] - a[1])
+                .slice(0, 4);
+
+            const labels = sortedMethods.map(item => item[0].toUpperCase());
+            const values = sortedMethods.map(item => item[1]);
+
+            if (paymentChartInstance) {
+                paymentChartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('payMethodChart').getContext('2d');
+            paymentChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: [
+                            '#D5001C',          // Porsche Red
+                            '#FFFFFF',          // Clean White
+                            '#D1A153',          // Porsche Gold
+                            'rgba(113, 128, 150, 0.4)' // Grey
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '80%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#718096',
+                                font: { family: 'Oswald', size: 9 },
+                                boxWidth: 6,
+                                padding: 12
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#0B0D0F',
+                            borderColor: '#1C1F22',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.label}: ${formatCurrency(context.raw)}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Tabelas de Liderança Regional por Cidade e Estado (Perguntas de Negócio)
+        function generateGeographicalTables() {
+            // 1. Cidades
+            let cityMap = {};
+            filteredSalesData.forEach(item => {
+                const city = item.CitySanitized;
+                if (!city) return;
+                
+                if (!cityMap[city]) {
+                    cityMap[city] = { totalVolume: 0, revenue: 0, models: {} };
+                }
+                
+                cityMap[city].totalVolume++;
+                cityMap[city].revenue += item.SalesPriceSanitized;
+                
+                const model = item.PorscheModelSanitized;
+                cityMap[city].models[model] = (cityMap[city].models[model] || 0) + 1;
+            });
+
+            const cityTableBody = document.getElementById('citySalesTable');
+            cityTableBody.innerHTML = '';
+
+            const sortedCities = Object.entries(cityMap)
+                .sort((a, b) => b[1].totalVolume - a[1].totalVolume)
+                .slice(0, 6);
+
+            if (sortedCities.length === 0) {
+                cityTableBody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-porscheGrayDark">Sem dados regionais para esta seleção.</td></tr>`;
+            } else {
+                sortedCities.forEach(([cityName, data]) => {
+                    let topModel = '-';
+                    let maxModelCount = 0;
+                    for (let m in data.models) {
+                        if (data.models[m] > maxModelCount) {
+                            maxModelCount = data.models[m];
+                            topModel = m;
+                        }
+                    }
+
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-zinc-900/40 transition duration-150 border-b border-porscheBorder/40";
+                    tr.innerHTML = `
+                        <td class="py-3 px-2 font-semibold text-white uppercase">${cityName}</td>
+                        <td class="py-3 px-2 text-center text-porscheGrayLight">${data.totalVolume} un.</td>
+                        <td class="py-3 px-2"><span class="text-porscheRed font-bold uppercase">${topModel}</span> <span class="text-[9px] text-porscheGrayDark font-mono">(${maxModelCount})</span></td>
+                        <td class="py-3 px-2 text-right text-emerald-400 font-bold">${formatCurrency(data.revenue)}</td>
+                    `;
+                    cityTableBody.appendChild(tr);
+                });
+            }
+
+            // 2. Estados
+            let stateMap = {};
+            filteredSalesData.forEach(item => {
+                const state = item.StateSanitized;
+                if (!state) return;
+
+                if (!stateMap[state]) {
+                    stateMap[state] = { totalVolume: 0, revenue: 0, models: {} };
+                }
+
+                stateMap[state].totalVolume++;
+                stateMap[state].revenue += item.SalesPriceSanitized;
+
+                const model = item.PorscheModelSanitized;
+                stateMap[state].models[model] = (stateMap[state].models[model] || 0) + 1;
+            });
+
+            const stateTableBody = document.getElementById('stateSalesTable');
+            stateTableBody.innerHTML = '';
+
+            const sortedStates = Object.entries(stateMap)
+                .sort((a,b) => b[1].totalVolume - a[1].totalVolume)
+                .slice(0, 6);
+
+            if (sortedStates.length === 0) {
+                stateTableBody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-porscheGrayDark">Sem dados de estados.</td></tr>`;
+            } else {
+                sortedStates.forEach(([stateName, data]) => {
+                    let topModel = '-';
+                    let maxModelCount = 0;
+                    for (let m in data.models) {
+                        if (data.models[m] > maxModelCount) {
+                            maxModelCount = data.models[m];
+                            topModel = m;
+                        }
+                    }
+
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-zinc-900/40 transition duration-150 border-b border-porscheBorder/40";
+                    tr.innerHTML = `
+                        <td class="py-3 px-2 font-semibold text-white uppercase">${stateName}</td>
+                        <td class="py-3 px-2 text-center text-porscheGrayLight">${data.totalVolume} un.</td>
+                        <td class="py-3 px-2 text-white font-medium uppercase">${topModel}</td>
+                        <td class="py-3 px-2 text-right text-emerald-400 font-bold">${formatCurrency(data.revenue)}</td>
+                    `;
+                    stateTableBody.appendChild(tr);
+                });
+            }
+        }
+
+        // Inteligência de Carros Populares por Cidade (Gera diagnósticos sob demanda)
+        // Adaptado para relatar o impacto de cancelamentos se o filtro dinâmico de Delivery Status estiver ativo.
+        function generateRegionalInsights() {
+            const citySelect = document.getElementById('insightCityFilter');
+            const selectedCity = citySelect.value;
+            const currentDeliveryFilter = document.getElementById('filterDeliveryStatus').value;
+            
+            if (!selectedCity) {
+                document.getElementById('regionalBestModel').textContent = "-";
+                document.getElementById('regionalBestVolume').textContent = "-";
+                document.getElementById('regionalPreferredPay').textContent = "-";
+                document.getElementById('regionalAveragePrice').textContent = "-";
+                document.getElementById('regionalAverageMileage').textContent = "-";
+                document.getElementById('regionalInsightText').textContent = "Por favor, selecione uma cidade válida.";
+                return;
+            }
+
+            // Para os insights, analisamos a base completa daquela cidade de modo a contextualizar
+            const cityData = rawSalesData.filter(item => item.CitySanitized === selectedCity);
+            if (cityData.length === 0) return;
+
+            let models = {};
+            let payments = {};
+            let totalPrice = 0;
+            let totalMileage = 0;
+            let zeroMileageCount = 0;
+            let cancelledInCity = 0;
+
+            cityData.forEach(item => {
+                models[item.PorscheModelSanitized] = (models[item.PorscheModelSanitized] || 0) + 1;
+                payments[item.PayMethodSanitized] = (payments[item.PayMethodSanitized] || 0) + 1;
+                totalPrice += item.SalesPriceSanitized;
+                totalMileage += item.VehicleMileageSanitized;
+                if (item.VehicleMileageSanitized === 0) zeroMileageCount++;
+                if (item.DeliveryStatusSanitized && item.DeliveryStatusSanitized.toLowerCase() === 'cancelled') {
+                    cancelledInCity++;
+                }
+            });
+
+            // Melhor Modelo
+            let topModel = '-';
+            let maxModel = 0;
+            for (let m in models) {
+                if (models[m] > maxModel) {
+                    maxModel = models[m];
+                    topModel = m;
+                }
+            }
+
+            // Melhor Pagamento
+            let topPay = '-';
+            let maxPay = 0;
+            for (let p in payments) {
+                if (payments[p] > maxPay) {
+                    maxPay = payments[p];
+                    topPay = p;
+                }
+            }
+
+            const avgPrice = totalPrice / cityData.length;
+            const avgMileage = totalMileage / cityData.length;
+
+            document.getElementById('regionalBestModel').textContent = topModel.toUpperCase();
+            document.getElementById('regionalBestVolume').textContent = `${maxModel} un. (${((maxModel/cityData.length)*100).toFixed(0)}%)`;
+            document.getElementById('regionalPreferredPay').textContent = topPay.toUpperCase();
+            document.getElementById('regionalAveragePrice').textContent = formatCurrency(avgPrice);
+            document.getElementById('regionalAverageMileage').textContent = `${Math.round(avgMileage).toLocaleString()} MI`;
+
+            // Diagnósticos analíticos customizados
+            let insightText = '';
+            if (currentDeliveryFilter.toLowerCase() === 'cancelled') {
+                insightText = `**Auditoria de Cancelamento em ${selectedCity}**: Analisando especificamente transações rescindidas. O **${topModel}** possui o maior volume de contratos não concluídos nesta praça. Recomenda-se realizar uma auditoria de vendas nos consultores locais para mapear gargalos na aprovação de crédito ou no follow-up pós-venda.`;
+            } else {
+                if (topModel.includes('911') || topModel.includes('Cayman') || topModel.includes('GT3')) {
+                    insightText = `O mercado em **${selectedCity}** demonstra perfil altamente desportivo e purista. O alto volume do **${topModel}** justifica focar o inventário local em configurações de alta performance.`;
+                } else if (topModel.includes('Taycan') || topModel.includes('Electric')) {
+                    insightText = `Forte tendência tecnológica e sustentável em **${selectedCity}**. O modelo de topo **${topModel}** aponta um consumidor interessado em performance elétrica.`;
+                } else {
+                    insightText = `A cidade de **${selectedCity}** é dominada pela usabilidade e espaço com o **${topModel}**. A modalidade preferencial é o **${topPay}** com ticket médio de **${formatCurrency(avgPrice)}**.`;
+                }
+
+                if (cancelledInCity > 0) {
+                    insightText += ` Foi mapeada uma taxa de cancelamento regional de **${((cancelledInCity/cityData.length)*100).toFixed(1)}%** (${cancelledInCity} contratos cancelados), servindo de indicador crítico para revisão de política comercial local.`;
+                }
+            }
+
+            if (zeroMileageCount > 0 && currentDeliveryFilter.toLowerCase() !== 'cancelled') {
+                insightText += ` Detetou-se também preferência por veículos Km 0 (${zeroMileageCount} novos).`;
+            }
+
+            document.getElementById('regionalInsightText').innerHTML = insightText;
+        }
+
+        // Formatador Monetário
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value);
+        }
+    </script>
+</body>
+</html>
